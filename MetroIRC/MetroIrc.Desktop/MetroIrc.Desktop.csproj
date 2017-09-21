@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C7982299-4B76-4846-960D-9CDE1B31BDAE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MetroIrc.Desktop</RootNamespace>
+    <AssemblyName>MetroIRC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MetroIrc.Desktop.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\IrcSharp\SocketListenerWrapper.cs">
+      <Link>SocketListenerWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\IrcSharp\SocketWrapper.cs">
+      <Link>SocketWrapper.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChannelTopicControl.cs" />
+    <Compile Include="Controls\ChannelUsersControl.cs" />
+    <Compile Include="Controls\IrcUserControl.cs" />
+    <Compile Include="Converters\ChannelInfoListToStringConverter.cs" />
+    <Compile Include="Converters\ConnectionStatusToBrushConverter.cs" />
+    <Compile Include="Converters\DialogButtonToStringConverter.cs" />
+    <Compile Include="Converters\EnumTranslationConverter.cs" />
+    <Compile Include="Converters\MessageFormattingConverter.cs" />
+    <Compile Include="Extensions\TextBoxExtensions.cs" />
+    <Compile Include="Log\ExceptionLogger.cs" />
+    <Compile Include="Log\WpfIrcLogger.cs" />
+    <Compile Include="MessageFormatter.cs" />
+    <Compile Include="MessageFormatter.WordProcessors.cs" />
+    <Compile Include="PaneDock.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Services\DialogBoxView.xaml.cs">
+      <DependentUpon>DialogBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\InputBoxView.xaml.cs">
+      <DependentUpon>InputBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\MetroDialogWindowView.xaml.cs">
+      <DependentUpon>MetroDialogWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\WpfDialogService.cs" />
+    <Compile Include="Services\WpfNotificationService.cs" />
+    <Compile Include="Services\WpfResourceService.cs" />
+    <Compile Include="Services\WpfSmileyService.cs" />
+    <Compile Include="Services\WpfTcpService.cs" />
+    <Compile Include="Services\WpfTranslationService.cs" />
+    <Compile Include="Services\WpfUIService.cs" />
+    <Compile Include="SettingBinding.cs" />
+    <Compile Include="SettingsHelper.cs" />
+    <Compile Include="Smiley.cs" />
+    <Compile Include="SmileyManager.cs" />
+    <Compile Include="SmileyPack.cs" />
+    <Compile Include="UpdateChecker.cs" />
+    <Compile Include="ViewModels\AboutWindowViewModel.cs" />
+    <Compile Include="ViewModels\AddSmileyWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\SettingsWindowViewModel.cs" />
+    <Compile Include="ViewModels\SmileySettingsViewModel.cs" />
+    <Compile Include="ViewModels\UpdateWindowViewModel.cs" />
+    <Compile Include="Views\AboutWindowView.xaml.cs">
+      <DependentUpon>AboutWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddSmileyWindowView.xaml.cs">
+      <DependentUpon>AddSmileyWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditNetworkWindowView.xaml.cs">
+      <DependentUpon>EditNetworkWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IrcChannelView.xaml.cs">
+      <DependentUpon>IrcChannelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IrcNetworkInformationView.xaml.cs">
+      <DependentUpon>IrcNetworkInformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IrcUserView.xaml.cs">
+      <DependentUpon>IrcUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JoinChannelWindowView.xaml.cs">
+      <DependentUpon>JoinChannelWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageNetworksWindowView.xaml.cs">
+      <DependentUpon>ManageNetworksWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsWindowView.xaml.cs">
+      <DependentUpon>SettingsWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SmileySettingsView.xaml.cs">
+      <DependentUpon>SmileySettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateWindowView.xaml.cs">
+      <DependentUpon>UpdateWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WpfSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\IrcSharp\IrcSharp\IrcSharp.csproj">
+      <Project>{6fc44f17-113f-4e19-805d-763b0c3cca0b}</Project>
+      <Name>IrcSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MetroControls\MetroControls.csproj">
+      <Project>{900b2602-92c6-4d44-8de3-91a723782c9b}</Project>
+      <Name>MetroControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\BasicMvvm\BasicMvvm.csproj">
+      <Project>{a2dd48ee-fd79-462e-b3d4-f6feed62c507}</Project>
+      <Name>BasicMvvm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonStuff\CommonStuff.csproj">
+      <Project>{bcab0813-e28c-41dd-abc4-2d3a4c939920}</Project>
+      <Name>CommonStuff</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\WpfLoc\WpfLoc.csproj">
+      <Project>{0c66ba4d-ac6e-4501-a3e1-5bf78af6f2ee}</Project>
+      <Name>WpfLoc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MetroIrc.Common\MetroIrc.Common.csproj">
+      <Project>{f4644434-9ea2-4d39-b283-69c654e45fde}</Project>
+      <Name>MetroIrc.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Resources\Colors\Black.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Colors\White.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\IrcLogTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\MessageDataTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Services\DialogBoxView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Services\InputBoxView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Services\MetroDialogWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddSmileyWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EditNetworkWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IrcChannelView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IrcNetworkInformationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IrcUserView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\JoinChannelWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ManageNetworksWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SmileySettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdateWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Smileys\Diagona\happy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Diagona\heart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Diagona\manifest.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Diagona\meh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Diagona\omg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Diagona\sad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Diagona\smile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Diagona\tongue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\angry.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\confused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\crying.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\glasses.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\green.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\happy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\lol.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\manifest.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\meh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\omg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\sad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\surprise.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\tongue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Smileys\Fugue\wink.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+    <Resource Include="Properties\License.txt" />
+    <Content Include="Sounds\NewHighlightedMessage.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Languages\en-US.resx" />
+    <EmbeddedResource Include="Languages\fr-FR.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>:: Go to the release dir
+cd $(TargetDir)
+
+:: Generate XML serializers
+:: "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\NETFX 4.0 Tools\sgen.exe" /f /a:$(TargetName) /t:MetroIrc.Desktop.WpfSettings
+
+:: Delete XML doc files
+del *.xml
+
+:: Create a 0 byte text file for the ZIP
+echo on &gt; portable.txt
+
+:: Compact PDBs using NTFS compression
+compact /c *.pdb
+
+:: Delete the existing ZIP
+del ..\..\..\$(TargetName)_Portable.zip
+
+:: Create the ZIP, three levels up into the root MetroIRC directory
+..\..\utils\zip.exe -9 ..\..\..\$(TargetName)_Portable.zip * */* */*/* -x *.vshost.exe -x *.vshost.exe.config
+
+:: Delete the portable file for the installer
+del portable.txt</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

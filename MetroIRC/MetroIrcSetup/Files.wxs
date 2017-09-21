@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright (C) 2012 Solal Pirelli
+
+This library is free software. It comes without any warranty, to
+the extent permitted by applicable law. You can redistribute it
+and/or modify it under the terms of the Do What The Fuck You Want
+To Public License, Version 2, as published by Sam Hocevar. See
+http://sam.zoy.org/wtfpl/COPYING for more details.
+-->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component Id="cFiles" Guid="{1CC8F546-1449-4640-8BAE-C295F1F59D62}">
+        <File KeyPath="yes" Id="MainExecutable" Source="$(var.SourceDir)\MetroIRC.exe" />
+        <File Source="$(var.SourceDir)\MetroIrc.exe.config" />
+        <File Source="$(var.SourceDir)\MetroIrc.Common.dll" />
+        <File Source="$(var.SourceDir)\BasicMvvm.dll" />
+        <File Source="$(var.SourceDir)\CommonStuff.dll" />
+        <File Source="$(var.SourceDir)\IrcSharp.dll" />
+        <File Source="$(var.SourceDir)\IrcSharp.pdb" />
+        <File Source="$(var.SourceDir)\MetroControls.dll" />
+        <File Source="$(var.SourceDir)\WpfLoc.dll" />
+      </Component>
+      
+      <Component Id="cPdbs" Guid="{299D83D4-F825-4157-B582-E4DB4706DAAF}">
+        <File KeyPath="yes" Source="$(var.SourceDir)\MetroIRC.pdb" />
+        <File Source="$(var.SourceDir)\BasicMvvm.pdb" />
+        <File Source="$(var.SourceDir)\CommonStuff.pdb" />
+        <File Source="$(var.SourceDir)\MetroControls.pdb" />
+        <File Source="$(var.SourceDir)\WpfLoc.pdb" />
+      </Component>
+      
+      <Directory Id="dSmileys" Name="Smileys">
+        <Directory Id="dSmileysDiagona" Name="Diagona">
+          <Component Id="cSmileysDiagona" Guid="{6F88F0D4-A91C-4136-80D1-E83FBB79DEFC}">
+            <File Id="diagona0" KeyPath="yes" Source="$(var.SourceDir)\Smileys\Diagona\manifest.xml" />
+            <File Id="diagona1" Source="$(var.SourceDir)\Smileys\Diagona\happy.png" />
+            <File Id="diagona2" Source="$(var.SourceDir)\Smileys\Diagona\heart.png" />
+            <File Id="diagona3" Source="$(var.SourceDir)\Smileys\Diagona\meh.png" />
+            <File Id="diagona4" Source="$(var.SourceDir)\Smileys\Diagona\omg.png" />
+            <File Id="diagona5" Source="$(var.SourceDir)\Smileys\Diagona\sad.png" />
+            <File Id="diagona6" Source="$(var.SourceDir)\Smileys\Diagona\smile.png" />
+            <File Id="diagona7" Source="$(var.SourceDir)\Smileys\Diagona\tongue.png" />
+          </Component>
+        </Directory>
+        
+        <Directory Id="dSmileysFugue" Name="Fugue">
+          <Component Id="cSmileysFugue" Guid="{35E9F734-DF89-416A-89CF-EF971A1C0C00}">
+            <File Id="fugue0" KeyPath="yes" Source="$(var.SourceDir)\Smileys\Fugue\manifest.xml" />
+            <File Id="fugue1" Source="$(var.SourceDir)\Smileys\Fugue\angry.png" />
+            <File Id="fugue2" Source="$(var.SourceDir)\Smileys\Fugue\confused.png" />
+            <File Id="fugue3" Source="$(var.SourceDir)\Smileys\Fugue\crying.png" />
+            <File Id="fugue4" Source="$(var.SourceDir)\Smileys\Fugue\glasses.png" />
+            <File Id="fugue5" Source="$(var.SourceDir)\Smileys\Fugue\green.png" />
+            <File Id="fugue6" Source="$(var.SourceDir)\Smileys\Fugue\happy.png" />
+            <File Id="fugue7" Source="$(var.SourceDir)\Smileys\Fugue\lol.png" />
+            <File Id="fugue8" Source="$(var.SourceDir)\Smileys\Fugue\meh.png" />
+            <File Id="fugue9" Source="$(var.SourceDir)\Smileys\Fugue\omg.png" />
+            <File Id="fugue10" Source="$(var.SourceDir)\Smileys\Fugue\sad.png" />
+            <File Id="fugue11" Source="$(var.SourceDir)\Smileys\Fugue\surprise.png" />
+            <File Id="fugue12" Source="$(var.SourceDir)\Smileys\Fugue\tongue.png" />
+            <File Id="fugue13" Source="$(var.SourceDir)\Smileys\Fugue\wink.png" />
+          </Component>
+        </Directory>
+      </Directory>
+      
+      <Directory Id="dSounds" Name="Sounds">
+        <Component Id="cSounds" Guid="{5ABD809C-682B-4335-8FFE-1551DB551054}">
+          <File KeyPath="yes" Source="$(var.SourceDir)\Sounds\NewHighlightedMessage.mp3" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <ComponentGroup Id="cgMainProduct">
+      <ComponentRef Id="cFiles" />
+      <ComponentRef Id="cPdbs" />
+      <ComponentRef Id="cSmileysDiagona" />
+      <ComponentRef Id="cSmileysFugue" />
+      <ComponentRef Id="cSounds" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>

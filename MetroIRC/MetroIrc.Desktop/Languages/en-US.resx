@@ -1,0 +1,795 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Global.ApplicationTitle" xml:space="preserve">
+    <value>MetroIRC</value>
+  </data>
+  <data name="Global.Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Global.Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Global.Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Global.No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Global.Browse" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="Global.Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="Global.Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="MainWindow.AddNetwork" xml:space="preserve">
+    <value>+Add network</value>
+  </data>
+  <data name="MainWindow.JoinChannel" xml:space="preserve">
+    <value>+Join channel</value>
+  </data>
+  <data name="MainWindow.Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="MainWindow.Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="MainWindow.About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ManageNetworksWindow.Title" xml:space="preserve">
+    <value>Manage networks</value>
+  </data>
+  <data name="ManageNetworksWindow.Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="ManageNetworksWindow.Nickname" xml:space="preserve">
+    <value>Nickname</value>
+  </data>
+  <data name="ManageNetworksWindow.RealName" xml:space="preserve">
+    <value>Real name</value>
+  </data>
+  <data name="ManageNetworksWindow.Networks" xml:space="preserve">
+    <value>Networks</value>
+  </data>
+  <data name="ManageNetworksWindow.AddNetwork" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="ManageNetworksWindow.EditNetwork" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ManageNetworksWindow.RemoveNetwork" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="ManageNetworksWindow.RemoveNetworkConfirmation" xml:space="preserve">
+    <value>Are you sure you want to remove {0} from the list?</value>
+  </data>
+  <data name="ManageNetworksWindow.Connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="EditNetworkWindow.AddNetworkTitle" xml:space="preserve">
+    <value>Add network</value>
+  </data>
+  <data name="EditNetworkWindow.EditNetworkTitle" xml:space="preserve">
+    <value>Edit {0}</value>
+  </data>
+  <data name="EditNetworkWindow.Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="EditNetworkWindow.Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="EditNetworkWindow.Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="EditNetworkWindow.PortNumber" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="EditNetworkWindow.UseSsl" xml:space="preserve">
+    <value>Use SSL</value>
+  </data>
+  <data name="EditNetworkWindow.AcceptInvalidCertificates" xml:space="preserve">
+    <value>Accept invalid certificates</value>
+  </data>
+  <data name="EditNetworkWindow.Encoding" xml:space="preserve">
+    <value>Encoding</value>
+  </data>
+  <data name="EditNetworkWindow.YourDetails" xml:space="preserve">
+    <value>Your details</value>
+  </data>
+  <data name="EditNetworkWindow.UseGlobalInfo" xml:space="preserve">
+    <value>Use global information</value>
+  </data>
+  <data name="EditNetworkWindow.Nickname" xml:space="preserve">
+    <value>Nickname</value>
+  </data>
+  <data name="EditNetworkWindow.RealName" xml:space="preserve">
+    <value>Real name</value>
+  </data>
+  <data name="EditNetworkWindow.Connection" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="EditNetworkWindow.JoinCommand" xml:space="preserve">
+    <value>Command sent on join</value>
+  </data>
+  <data name="EditNetworkWindow.JoinOnStartup" xml:space="preserve">
+    <value>Join this network on startup</value>
+  </data>
+  <data name="EditNetworkWindow.FavoriteChannels" xml:space="preserve">
+    <value>Favorite channels</value>
+  </data>
+  <data name="JoinChannelWindow.Title" xml:space="preserve">
+    <value>Join channel</value>
+  </data>
+  <data name="JoinChannelWindow.Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="JoinChannelWindow.Key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="JoinChannelWindow.JoinOnStartup" xml:space="preserve">
+    <value>Join when connecting to this network</value>
+  </data>
+  <data name="SettingsWindow.Title" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="AboutWindow.Title" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutWindow.CheckForUpdate" xml:space="preserve">
+    <value>Check for update</value>
+  </data>
+  <data name="AboutWindow.SpecialThanks" xml:space="preserve">
+    <value>Special thanks</value>
+  </data>
+  <data name="AboutWindow.ChrisLindhartsenDescription" xml:space="preserve">
+    <value>Author of the original MetroIRC concept</value>
+  </data>
+  <data name="AboutWindow.YusukeKamiyamaneDescription" xml:space="preserve">
+    <value>Author of the Fugue and Diagona icon sets, used for the default smiley packs</value>
+  </data>
+  <data name="UpdateWindow.Title" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateWindow.UpdateAvailable" xml:space="preserve">
+    <value>An update is available.</value>
+  </data>
+  <data name="UpdateWindow.DownloadingUpdate" xml:space="preserve">
+    <value>Downloading update...</value>
+  </data>
+  <data name="UpdateWindow.ApplyingUpdate" xml:space="preserve">
+    <value>Applying update...</value>
+  </data>
+  <data name="ChatSettings.Title" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="ChatSettings.ShowUserList" xml:space="preserve">
+    <value>Show user list</value>
+  </data>
+  <data name="ChatSettings.ShowTopic" xml:space="preserve">
+    <value>Show channel topics</value>
+  </data>
+  <data name="ChatSettings.ShowTimeStamps" xml:space="preserve">
+    <value>Show timestamps</value>
+  </data>
+  <data name="ChatSettings.TimeStampFormat" xml:space="preserve">
+    <value>Timestamps format</value>
+  </data>
+  <data name="ChatSettings.ShowRepeats" xml:space="preserve">
+    <value>Show repeated user names/timestamps</value>
+  </data>
+  <data name="ChatSettings.NetworksListPosition" xml:space="preserve">
+    <value>Networks list position</value>
+  </data>
+  <data name="MessagesSettings.Title" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="MessagesSettings.ShowSmileys" xml:space="preserve">
+    <value>Use images for smileys</value>
+  </data>
+  <data name="MessagesSettings.TransformLinks" xml:space="preserve">
+    <value>Transform links into clickable ones</value>
+  </data>
+  <data name="MessagesSettings.TransformChans" xml:space="preserve">
+    <value>Transform channel names into clickable ones</value>
+  </data>
+  <data name="MessagesSettings.NotifyAlways" xml:space="preserve">
+    <value>Notify me when any message is received</value>
+  </data>
+  <data name="MessagesSettings.NotifyOnNickname" xml:space="preserve">
+    <value>Notify me when my nickname is mentioned</value>
+  </data>
+  <data name="MessagesSettings.NotifyWords" xml:space="preserve">
+    <value>Notify me when one of these words is mentioned:</value>
+  </data>
+  <data name="MessagesSettings.NotifyWithSound" xml:space="preserve">
+    <value>Play a sound to notify me</value>
+  </data>
+  <data name="InterfaceSettings.Title" xml:space="preserve">
+    <value>Interface</value>
+  </data>
+  <data name="InterfaceSettings.MainColor" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="InterfaceSettings.AccentColor" xml:space="preserve">
+    <value>Accent</value>
+  </data>
+  <data name="InterfaceSettings.InterfaceLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="InterfaceSettings.RestartForLanguageChange" xml:space="preserve">
+    <value>Please restart MetroIRC to apply the language change.</value>
+  </data>
+  <data name="SmileySettings.Title" xml:space="preserve">
+    <value>Smileys</value>
+  </data>
+  <data name="SmileySettings.AddPack" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="SmileySettings.DuplicatePack" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="SmileySettings.RemovePack" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="SmileySettings.PackName" xml:space="preserve">
+    <value>Pack name</value>
+  </data>
+  <data name="SmileySettings.Shortcuts" xml:space="preserve">
+    <value>Text shortcuts</value>
+  </data>
+  <data name="SmileySettings.ChangeImage" xml:space="preserve">
+    <value>Change image</value>
+  </data>
+  <data name="SmileySettings.AddSmiley" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="SmileySettings.RemoveSmiley" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="SmileySettings.NewPackName" xml:space="preserve">
+    <value>Name of the new pack</value>
+  </data>
+  <data name="SmileySettings.DuplicatePackName" xml:space="preserve">
+    <value>Name of the duplicate pack</value>
+  </data>
+  <data name="SmileySettings.InvalidPackName" xml:space="preserve">
+    <value>'{0}' is an invalid pack name. Chars {1} are forbidden in pack names.</value>
+  </data>
+  <data name="SmileySettings.PackNameAlreadyExists" xml:space="preserve">
+    <value>A pack with the name '{0}' already exists. Please choose another name.</value>
+  </data>
+  <data name="SmileySettings.DeletePackConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete pack '{0}' ?</value>
+  </data>
+  <data name="SmileySettings.DeleteSmileyConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete the selected smiley ?</value>
+  </data>
+  <data name="SmileySettings.CannotChangeDefaultPack" xml:space="preserve">
+    <value>The selected pack and its smileys cannot be changed. However, you can duplicate the pack and change the duplicate.</value>
+  </data>
+  <data name="SmileySettings.NewSmileyImage" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="SmileySettings.NewSmileyShortcuts" xml:space="preserve">
+    <value>Text shortcuts</value>
+  </data>
+  <data name="AdvancedSettings.Title" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="AdvancedSettings.MaximumMessagesCount" xml:space="preserve">
+    <value>Number of messages kept in memory per conversation</value>
+  </data>
+  <data name="AdvancedSettings.EnableIdent" xml:space="preserve">
+    <value>Enable ident server</value>
+  </data>
+  <data name="AdvancedSettings.EnableIdentRemark" xml:space="preserve">
+    <value>Port 113 must be open</value>
+  </data>
+  <data name="NetworkInformation.Title" xml:space="preserve">
+    <value>[Info]</value>
+  </data>
+  <data name="NetworkInformation.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="NetworkInformation.ConnectionStatus" xml:space="preserve">
+    <value>Connection status</value>
+  </data>
+  <data name="NetworkInformation.CurrentNickname" xml:space="preserve">
+    <value>Current Nickname</value>
+  </data>
+  <data name="NetworkInformation.MessageOfTheDay" xml:space="preserve">
+    <value>Message of the day</value>
+  </data>
+  <data name="NetworkInformation.MessagesFromServer" xml:space="preserve">
+    <value>Messages from the server</value>
+  </data>
+  <data name="ConnectionStatusChanged.Connected" xml:space="preserve">
+    <value>Connecting...</value>
+  </data>
+  <data name="ConnectionStatusChanged.Authenticated" xml:space="preserve">
+    <value>Connection established.</value>
+  </data>
+  <data name="Channel.Owner" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="Channel.AdminUsers" xml:space="preserve">
+    <value>Administrators</value>
+  </data>
+  <data name="Channel.OperatorUsers" xml:space="preserve">
+    <value>Operators</value>
+  </data>
+  <data name="Channel.HalfOpUsers" xml:space="preserve">
+    <value>Half operators</value>
+  </data>
+  <data name="Channel.VoicedUsers" xml:space="preserve">
+    <value>Voiced users</value>
+  </data>
+  <data name="Channel.NormalUsers" xml:space="preserve">
+    <value>Other users</value>
+  </data>
+  <data name="Conversation.From" xml:space="preserve">
+    <value>from</value>
+  </data>
+  <data name="Conversation.To" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="Conversation.Join" xml:space="preserve">
+    <value>* {0} has joined {1}</value>
+  </data>
+  <data name="Conversation.Part" xml:space="preserve">
+    <value>* {0} has left {1}</value>
+  </data>
+  <data name="Conversation.Quit" xml:space="preserve">
+    <value>* {0} has quit IRC</value>
+  </data>
+  <data name="Conversation.Kick" xml:space="preserve">
+    <value>* {0} was kicked by {1}</value>
+  </data>
+  <data name="Conversation.NickChange" xml:space="preserve">
+    <value>* {0} is now known as {1}</value>
+  </data>
+  <data name="Conversation.InviteReceived" xml:space="preserve">
+    <value>* {0} has invited you to {1}</value>
+  </data>
+  <data name="Conversation.InviteSent" xml:space="preserve">
+    <value>* You invited {0} to {1}</value>
+  </data>
+  <data name="Conversation.Reason" xml:space="preserve">
+    <value> (Reason: {0})</value>
+  </data>
+  <data name="Conversation.ChannelList" xml:space="preserve">
+    <value>Channel list</value>
+  </data>
+  <data name="Conversation.HL" xml:space="preserve">
+    <value>{0} wants your attention.</value>
+  </data>
+  <data name="CtcpReplies.Ping" xml:space="preserve">
+    <value>{0}'s ping time is {1} seconds.</value>
+  </data>
+  <data name="CtcpReplies.ClientSource" xml:space="preserve">
+    <value>{0}'s client can be found at: {1}.</value>
+  </data>
+  <data name="CtcpReplies.Time" xml:space="preserve">
+    <value>{0}'s local time is {1}.</value>
+  </data>
+  <data name="CtcpReplies.UserInfo" xml:space="preserve">
+    <value>Information about {0}: {1}</value>
+  </data>
+  <data name="CtcpReplies.ClientInfo" xml:space="preserve">
+    <value>Information about {0}'s client: {1}</value>
+  </data>
+  <data name="CtcpReplies.ClientVersion" xml:space="preserve">
+    <value>{0}'s client is {1}</value>
+  </data>
+  <data name="CtcpReplies.Error" xml:space="preserve">
+    <value>Error message from {0}: {1}</value>
+  </data>
+  <data name="CharsetInformation.CurrentCharsetIs" xml:space="preserve">
+    <value>Current charset: {0}.</value>
+  </data>
+  <data name="CharsetInformation.InvalidCharset" xml:space="preserve">
+    <value>Invalid charset. Please enter a charset name or a codepage number.</value>
+  </data>
+  <data name="CharsetInformation.CharsetChanged" xml:space="preserve">
+    <value>Charset changed to {0}.</value>
+  </data>
+  <data name="UserInformation.UserName" xml:space="preserve">
+    <value>{0}'s user name is {1}</value>
+  </data>
+  <data name="UserInformation.RealName" xml:space="preserve">
+    <value>{0}'s real name is {1}</value>
+  </data>
+  <data name="UserInformation.Host" xml:space="preserve">
+    <value>{0}'s host is {1}</value>
+  </data>
+  <data name="UserInformation.ConnectionServer" xml:space="preserve">
+    <value>{0} is connected to {1}</value>
+  </data>
+  <data name="UserInformation.IdleTime" xml:space="preserve">
+    <value>{0} has been idle since {1} seconds.</value>
+  </data>
+  <data name="UserInformation.LoginDate" xml:space="preserve">
+    <value>{0} logged in at {1}</value>
+  </data>
+  <data name="UserInformation.Channels" xml:space="preserve">
+    <value>{0} is in the following channels: {1}</value>
+  </data>
+  <data name="Commands.OpenPrivateConversation" xml:space="preserve">
+    <value>Open private conversation</value>
+  </data>
+  <data name="Commands.WhoIs" xml:space="preserve">
+    <value>Get information about this user</value>
+  </data>
+  <data name="Commands.Kick" xml:space="preserve">
+    <value>Kick from this channel</value>
+  </data>
+  <data name="Commands.Ban" xml:space="preserve">
+    <value>Ban from this channel</value>
+  </data>
+  <data name="ConnectionStatus.Connected" xml:space="preserve">
+    <value>Connecting...</value>
+  </data>
+  <data name="ConnectionStatus.Authenticated" xml:space="preserve">
+    <value>Connected</value>
+  </data>
+  <data name="ConnectionStatus.ConnectionLost" xml:space="preserve">
+    <value>Connection lost</value>
+  </data>
+  <data name="DialogButton.Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="DialogButton.Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DialogButton.Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="DialogButton.No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="PaneDock.Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="PaneDock.Top" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="PaneDock.Right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="InterfaceColors.#FF000000" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="InterfaceColors.#FFFFFFFF" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="ChannelTopic.TopicInfo" xml:space="preserve">
+    <value>Set by {0} on {1}</value>
+  </data>
+  <data name="ChannelTopic.Placeholder" xml:space="preserve">
+    <value>(no topic)</value>
+  </data>
+  <data name="ChannelTopic.Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ChannelTopic.FinishEdit" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="ChannelTopic.CancelEdit" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ConnectionErrors.NicknameCollision" xml:space="preserve">
+    <value>The nickname {0} is already used. Trying {0}_</value>
+  </data>
+  <data name="ConnectionStatusChanged.NotConnected" xml:space="preserve">
+    <value>The connection to this network was lost.</value>
+  </data>
+  <data name="ConnectionStatusChanged.ConnectionLost" xml:space="preserve">
+    <value>The connection to this network was lost.</value>
+  </data>
+  <data name="IrcNetworkInfoErrors.HostName" xml:space="preserve">
+    <value>The server address must be valid.</value>
+  </data>
+  <data name="IrcNetworkInfoErrors.Nickname" xml:space="preserve">
+    <value>The nickname must not be empty.</value>
+  </data>
+  <data name="IrcNetworkInfoErrors.RealName" xml:space="preserve">
+    <value>The real name must not be empty.</value>
+  </data>
+  <data name="IrcChannelInfoErrors.Name" xml:space="preserve">
+    <value>The name must not be empty or contain special characters.</value>
+  </data>
+  <data name="SettingsErrors.UserNickname" xml:space="preserve">
+    <value>The nickname must not be empty.</value>
+  </data>
+  <data name="SettingsErrors.UserRealName" xml:space="preserve">
+    <value>The real name must not be empty.</value>
+  </data>
+  <data name="ConversationErrors.EmptyChannelList" xml:space="preserve">
+    <value>No channels were found.</value>
+  </data>
+  <data name="ConversationErrors.NicknameTaken" xml:space="preserve">
+    <value>The nickname {0} is already taken.</value>
+  </data>
+  <data name="UserMode.Default" xml:space="preserve">
+    <value>{0}'s mode is now {1}</value>
+  </data>
+  <data name="UserMode.SetBy" xml:space="preserve">
+    <value> (set by {0})</value>
+  </data>
+  <data name="PositiveUserModes.a" xml:space="preserve">
+    <value>{0} is now away.</value>
+  </data>
+  <data name="PositiveUserModes.i" xml:space="preserve">
+    <value>{0} is now invisible. Users who are not discussing with him/her know s/he is connected.</value>
+  </data>
+  <data name="PositiveUserModes.w" xml:space="preserve">
+    <value>{0} will now receive 'wall ops' messages.</value>
+  </data>
+  <data name="PositiveUserModes.o" xml:space="preserve">
+    <value>{0} is now a global operator.</value>
+  </data>
+  <data name="PositiveUserModes.O_" xml:space="preserve">
+    <value>{0} is now a local operator.</value>
+  </data>
+  <data name="PositiveUserModes.s" xml:space="preserve">
+    <value>{0} will now receive server notices.</value>
+  </data>
+  <data name="NegativeUserModes.a" xml:space="preserve">
+    <value>{0} is not away any more.</value>
+  </data>
+  <data name="NegativeUserModes.i" xml:space="preserve">
+    <value>{0} is not invisible any more. Anyone can know s/he is connected.</value>
+  </data>
+  <data name="NegativeUserModes.w" xml:space="preserve">
+    <value>{0} will not receive 'wall ops' messages any more.</value>
+  </data>
+  <data name="NegativeUserModes.o" xml:space="preserve">
+    <value>{0} is not a global operator any more.</value>
+  </data>
+  <data name="NegativeUserModes.O_" xml:space="preserve">
+    <value>{0} is not a local operator any more.</value>
+  </data>
+  <data name="NegativeUserModes.s" xml:space="preserve">
+    <value>{0} will not receive server notices any more.</value>
+  </data>
+  <data name="ChannelUserModes.+" xml:space="preserve">
+    <value>* {0} gives {1} to {2}</value>
+  </data>
+  <data name="ChannelUserModes.-" xml:space="preserve">
+    <value>* {0} removes {1} from {2}</value>
+  </data>
+  <data name="ChannelUserModes.O_" xml:space="preserve">
+    <value>channel creator privileges</value>
+  </data>
+  <data name="ChannelUserModes.q" xml:space="preserve">
+    <value>channel founder privileges</value>
+  </data>
+  <data name="ChannelUserModes.a" xml:space="preserve">
+    <value>channel administrator privileges</value>
+  </data>
+  <data name="ChannelUserModes.o" xml:space="preserve">
+    <value>channel operator privileges</value>
+  </data>
+  <data name="ChannelUserModes.h" xml:space="preserve">
+    <value>half operator privileges</value>
+  </data>
+  <data name="ChannelUserModes.v" xml:space="preserve">
+    <value>voice privileges</value>
+  </data>
+  <data name="ChannelUserModes.d" xml:space="preserve">
+    <value>deaf user limitations</value>
+  </data>
+  <data name="ChannelMode.Default" xml:space="preserve">
+    <value>* Mode {0}</value>
+  </data>
+  <data name="ChannelMode.SetBy" xml:space="preserve">
+    <value> (set by {0})</value>
+  </data>
+  <data name="PositiveChannelModes.a" xml:space="preserve">
+    <value>This channel is now an anonymous channel.</value>
+  </data>
+  <data name="PositiveChannelModes.i" xml:space="preserve">
+    <value>This channel is now accessible only on invitation.</value>
+  </data>
+  <data name="PositiveChannelModes.m" xml:space="preserve">
+    <value>This channel is now moderated. Only voiced users and operators can talk.</value>
+  </data>
+  <data name="PositiveChannelModes.n" xml:space="preserve">
+    <value>This channel has stopped accepting messages from users who are not on it.</value>
+  </data>
+  <data name="PositiveChannelModes.q" xml:space="preserve">
+    <value>This channel is now a quiet channel. User joining, parting or quitting will not be shown.</value>
+  </data>
+  <data name="PositiveChannelModes.p" xml:space="preserve">
+    <value>This channel is now private. Users not on this channel will not be able to know whether you are on it.</value>
+  </data>
+  <data name="PositiveChannelModes.s" xml:space="preserve">
+    <value>This channel is now secret. Users not on this channel cannot know it exists.</value>
+  </data>
+  <data name="PositiveChannelModes.r" xml:space="preserve">
+    <value>This channel is now protected against the loss of all channel operators.</value>
+  </data>
+  <data name="PositiveChannelModes.t" xml:space="preserve">
+    <value>The topic on this channel is now settable only by channel operators.</value>
+  </data>
+  <data name="PositiveChannelModes.k" xml:space="preserve">
+    <value>This channel is now password-protected. The key is {0}</value>
+  </data>
+  <data name="PositiveChannelModes.l" xml:space="preserve">
+    <value>The limit of users on this channel is now {0}.</value>
+  </data>
+  <data name="PositiveChannelModes.b" xml:space="preserve">
+    <value>The users whose host matches the mask {0} are now banned from entering this channel.</value>
+  </data>
+  <data name="PositiveChannelModes.e" xml:space="preserve">
+    <value>The users whose host matches the mask {0} are now allowed to enter this channel even if their host matches the ban mask.</value>
+  </data>
+  <data name="PositiveChannelModes.I_" xml:space="preserve">
+    <value>The users whose host matches the mask {0} are now allowed to enter this channel without needing an invitation from another channel member.</value>
+  </data>
+  <data name="NegativeChannelModes.a" xml:space="preserve">
+    <value>This channel is not an anonymous channel any more.</value>
+  </data>
+  <data name="NegativeChannelModes.i" xml:space="preserve">
+    <value>This channel is now accessible without invitation.</value>
+  </data>
+  <data name="NegativeChannelModes.m" xml:space="preserve">
+    <value>This channel is not moderated any more. Anyone can talk.</value>
+  </data>
+  <data name="NegativeChannelModes.n" xml:space="preserve">
+    <value>This channel is now accepting messages even from users who are not on it.</value>
+  </data>
+  <data name="NegativeChannelModes.q" xml:space="preserve">
+    <value>This channel is not a quiet channel any more. All activity from users will be shown.</value>
+  </data>
+  <data name="NegativeChannelModes.p" xml:space="preserve">
+    <value>This channel is not private any more. Users not on this channel can now know you are on it.</value>
+  </data>
+  <data name="NegativeChannelModes.s" xml:space="preserve">
+    <value>This channel is not secret any more. Users not on this channel can now know it exists.</value>
+  </data>
+  <data name="NegativeChannelModes.r" xml:space="preserve">
+    <value>This channel is not protected against the loss of all channel operators any more.</value>
+  </data>
+  <data name="NegativeChannelModes.t" xml:space="preserve">
+    <value>The topic on this channel can now be set by any user, regardless of its privileges.</value>
+  </data>
+  <data name="NegativeChannelModes.k" xml:space="preserve">
+    <value>This channel is not password-protected any more.</value>
+  </data>
+  <data name="NegativeChannelModes.l" xml:space="preserve">
+    <value>The limit of users on this channel has been removed.</value>
+  </data>
+  <data name="NegativeChannelModes.b" xml:space="preserve">
+    <value>The users whose host matches the mask {0} are not banned from entering this channel any more.</value>
+  </data>
+  <data name="NegativeChannelModes.e" xml:space="preserve">
+    <value>The users whose host matches the mask {0} are not ban exceptions any more.</value>
+  </data>
+  <data name="NegativeChannelModes.I_" xml:space="preserve">
+    <value>The users whose host matches the mask {0} are not inviting exceptions any more.</value>
+  </data>
+  <data name="ConnectionStatus.NotConnected" xml:space="preserve">
+    <value>Not connected</value>
+  </data>
+</root>

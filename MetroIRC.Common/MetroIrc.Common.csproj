@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F4644434-9EA2-4D39-B283-69C654E45FDE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MetroIrc.Common</RootNamespace>
+    <AssemblyName>MetroIrc.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <CodeAnalysisDictionary Include="Properties\License.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChannelListMessage.cs" />
+    <Compile Include="CommandMessage.cs" />
+    <Compile Include="IrcChannelInfo.cs" />
+    <Compile Include="IrcMessage.cs" />
+    <Compile Include="IrcMessageType.cs" />
+    <Compile Include="IrcModeTranslator.cs" />
+    <Compile Include="IrcNetworkInfo.cs" />
+    <Compile Include="ISettings.cs" />
+    <Compile Include="Log\IrcLogger.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="MessageDirection.cs" />
+    <Compile Include="Messages.cs" />
+    <Compile Include="MessageSender.CommandProcessors.cs" />
+    <Compile Include="MessageSender.cs" />
+    <Compile Include="Parsing\MessageParser.cs" />
+    <Compile Include="Parsing\ParseState.cs" />
+    <Compile Include="Parsing\TextColor.cs" />
+    <Compile Include="Parsing\TextContainer.cs" />
+    <Compile Include="Parsing\TextPart.cs" />
+    <Compile Include="Parsing\TextPartKind.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\INotificationService.cs" />
+    <Compile Include="Services\IResourceService.cs" />
+    <Compile Include="Services\ISmileyService.cs" />
+    <Compile Include="Services\ITcpService.cs" />
+    <Compile Include="Services\ITranslationService.cs" />
+    <Compile Include="Internals\FixedSpaceCollection.cs" />
+    <Compile Include="Internals\ReflectionHelper.cs" />
+    <Compile Include="Internals\StringExtensions.cs" />
+    <Compile Include="ViewModels\EditNetworkWindowViewModel.cs" />
+    <Compile Include="ViewModels\IrcChannelViewModel.cs" />
+    <Compile Include="ViewModels\IrcConversationViewModel.cs" />
+    <Compile Include="ViewModels\IrcNetworkInformationViewModel.cs" />
+    <Compile Include="ViewModels\IrcNetworkViewModel.cs" />
+    <Compile Include="ViewModels\IrcUserViewModel.cs" />
+    <Compile Include="ViewModels\JoinChannelWindowViewModel.cs" />
+    <Compile Include="ViewModels\ManageNetworksWindowViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\BasicMvvm\BasicMvvm.csproj">
+      <Project>{a2dd48ee-fd79-462e-b3d4-f6feed62c507}</Project>
+      <Name>BasicMvvm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IrcSharp\IrcSharp\IrcSharp.csproj">
+      <Project>{6fc44f17-113f-4e19-805d-763b0c3cca0b}</Project>
+      <Name>IrcSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

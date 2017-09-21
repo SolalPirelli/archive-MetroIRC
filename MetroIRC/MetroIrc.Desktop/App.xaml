@@ -1,0 +1,76 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+
+<Application x:Class="MetroIrc.Desktop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:MetroIrc.ViewModels;assembly=MetroIrc.Common"
+             xmlns:dv="clr-namespace:MetroIrc.Desktop.Views"
+             xmlns:dvm="clr-namespace:MetroIrc.Desktop.ViewModels"
+             xmlns:bvm="clr-namespace:BasicMvvm.Dialogs;assembly=BasicMvvm"
+             xmlns:loc="clr-namespace:WpfLoc;assembly=WpfLoc">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MetroControls;component/Resources/MetroTemplates.xaml" />
+                <ResourceDictionary Source="/MetroControls;component/Resources/MetroStyles.xaml" />
+                <ResourceDictionary Source="/MetroControls;component/Resources/MetroWindowDefaultStyle.xaml" />
+                <!-- the following line doesn't have any effect at runtime, only at design time -->
+                <ResourceDictionary Source="/MetroControls;component/Colors/Black.xaml" />
+
+                <ResourceDictionary Source="Resources/Styles.xaml" />
+                <ResourceDictionary Source="Resources/Icons.xaml" />
+                <ResourceDictionary Source="Resources/MessageDataTemplates.xaml" />
+                <ResourceDictionary Source="Resources/IrcLogTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <Style TargetType="UserControl" BasedOn="{StaticResource {x:Type UserControl}}">
+                <Setter Property="loc:DesignTime.Language" Value="fr-FR" />
+                <Setter Property="loc:DesignTime.TranslationProvider" Value="{x:Static loc:TranslationManager.ResourcesTranslationProvider}" />
+            </Style>
+            
+            <DataTemplate DataType="{x:Type dvm:AboutWindowViewModel}">
+                <dv:AboutWindowView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dvm:AddSmileyWindowViewModel}">
+                <dv:AddSmileyWindowView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:EditNetworkWindowViewModel}">
+                <dv:EditNetworkWindowView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:IrcChannelViewModel}">
+                <dv:IrcChannelView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:IrcNetworkInformationViewModel}">
+                <dv:IrcNetworkInformationView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:IrcUserViewModel}">
+                <dv:IrcUserView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:JoinChannelWindowViewModel}">
+                <dv:JoinChannelWindowView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ManageNetworksWindowViewModel}">
+                <dv:ManageNetworksWindowView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dvm:SettingsWindowViewModel}">
+                <dv:SettingsWindowView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dvm:SmileySettingsViewModel}">
+                <dv:SmileySettingsView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type dvm:UpdateWindowViewModel}">
+                <dv:UpdateWindowView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type bvm:DialogBoxViewModel}">
+                <dv:DialogBoxView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type bvm:InputBoxViewModel}">
+                <dv:InputBoxView />
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

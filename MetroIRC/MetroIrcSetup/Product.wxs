@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright (C) 2012-2013 Solal Pirelli
+
+This library is free software. It comes without any warranty, to
+the extent permitted by applicable law. You can redistribute it
+and/or modify it under the terms of the Do What The Fuck You Want
+To Public License, Version 2, as published by Sam Hocevar. See
+http://sam.zoy.org/wtfpl/COPYING for more details.
+-->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <?define AppName = MetroIRC ?>
+  <?define AppVersion = 0.14.0.0 ?>
+  <?define AppAuthor = Solal Pirelli ?>
+  <?define UpgradeCode = {23963E0E-AFA4-4BC3-AB30-154D51BF4CAF} ?>
+
+  <Product Id="*"
+           Name="$(var.AppName)"
+           Language="1033"
+           Codepage="1252"
+           Version="$(var.AppVersion)"
+           Manufacturer="$(var.AppAuthor)"
+           UpgradeCode="$(var.UpgradeCode)">
+    <!-- Require WI 2.0, compress -->
+    <Package Id="*"
+             Manufacturer="$(var.AppAuthor)"
+             InstallerVersion="200"
+             Languages="1033"
+             Compressed="yes" />
+
+    <!-- Included CAB -->
+    <Media Id="1" Cabinet="WhyDidYouExtractThisMsi.cab" EmbedCab="yes"
+           CompressionLevel="high" />
+
+    <!-- Installer icon -->
+    <Icon Id="ProgramIcon" SourceFile="icon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="ProgramIcon" />
+
+    <!-- Disable repair/modify -->
+    <Property Id="ARPNOREPAIR" Value="1" />
+    <Property Id="ARPNOMODIFY" Value="1" />
+    
+    <!-- Install per-machine if possible -->
+    <Property Id="ALLUSERS" Value="2" />
+     
+    <!-- Only one feature, containing everything -->
+    <Feature Id="Complete" Title="$(var.AppName)" Level="1">
+      <!-- Install the files -->
+      <ComponentGroupRef Id="cgMainProduct" />
+
+      <!-- Programs shortcut -->
+      <ComponentRef Id="cStartMenuShortcut" />
+
+      <!-- Desktop shortcut -->
+      <ComponentRef Id="cDesktopShortcut" />
+    </Feature>
+
+    <!-- Upgrade info -->
+    <Upgrade Id="$(var.UpgradeCode)">
+      <UpgradeVersion Minimum="0.0.1"
+                      IncludeMinimum="yes"
+                      OnlyDetect="no"
+                      Maximum="$(var.AppVersion)"
+                      IncludeMaximum="no"
+                      Property="PREVIOUSFOUND" />
+    </Upgrade>
+  </Product>
+
+  <Fragment>
+    <!-- Folders -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <!-- Programs (in Start Menu) -->
+      <Directory Id="ProgramMenuFolder" />
+
+      <!-- Desktop -->
+      <Directory Id="DesktopFolder" />
+
+      <!-- Directory in ProgramFiles -->
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLLOCATION" Name="$(var.AppName)" />
+      </Directory>
+    </Directory>
+
+    <!-- Programs shortcut -->
+    <DirectoryRef Id="ProgramMenuFolder">
+      <Component Id="cStartMenuShortcut"
+                 Guid="{7E9A1B5D-0123-4183-893D-ABC5FC72CEFF}">
+        <!-- Create the folder if it doesn't exist (needed) -->
+        <CreateFolder />
+        <!-- The actual shortcut -->
+        <Shortcut Id="StartMenuShortcut"
+                  Name="$(var.AppName)"
+                  Target="[#MainExecutable]"
+                  WorkingDirectory="INSTALLLOCATION"
+                  Icon="ProgramIcon" />
+
+        <!-- Keypath for this Component (needed) -->
+        <RegistryValue Root="HKCU" Key="Software\$(var.AppName)" Name="Installed"
+                       Type="integer" Value="1"
+                       KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Desktop shortcut -->
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="cDesktopShortcut"
+                 Guid="{73803501-256A-458f-BFD5-489E4DEC57DE}">
+        <!-- Create the folder if it doesn't exist (needed) -->
+        <CreateFolder />
+        <!-- The actual shortcut -->
+        <Shortcut Id="DesktopShortcut"
+                  Name="$(var.AppName)"
+                  Target="[#MainExecutable]"
+                  WorkingDirectory="INSTALLLOCATION"
+                  Icon="ProgramIcon" />
+
+        <!-- Keypath for this Component (needed) -->
+        <RegistryValue Root="HKCU" Key="Software\$(var.AppName)" Name="Installed"
+                       Type="integer" Value="1"
+                       KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+
+    <!-- Launch app action, invoked below -->
+    <CustomAction Id="LaunchApp" 
+                  FileKey="MainExecutable" ExeCommand="" 
+                  Execute="deferred" Impersonate="yes" Return="asyncNoWait" />
+
+    <!-- Delete the folder in AppData action, invoked below 
+         There seems to be no easy way to do this without using a batch file -->
+    <CustomAction Id="DeleteMyAppDataFolder"
+                  Directory="INSTALLLOCATION" ExeCommand="C:\Windows\System32\cmd.exe /c rmdir /q /s %AppData%\$(var.AppName)"
+                  Execute="deferred" Impersonate="no" />
+
+    <InstallExecuteSequence>
+      <!-- Remove old versions -->
+      <RemoveExistingProducts Before="InstallInitialize" />
+      
+      <!-- Launch the app on exit -->
+      <Custom Action="LaunchApp" After="InstallFiles" />
+
+      <!-- Delete the folder in AppData on uninstall -->
+      <Custom Action="DeleteMyAppDataFolder" After="InstallInitialize">
+        <![CDATA[(NOT UPGRADINGPRODUCTCODE) AND (REMOVE="ALL")]]>
+      </Custom>
+    </InstallExecuteSequence>
+  </Fragment>
+</Wix>

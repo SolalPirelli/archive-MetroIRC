@@ -1,0 +1,37 @@
+﻿<!-- 
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+    
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:my="clr-namespace:CommonStuff"
+                    xmlns:myControls="clr-namespace:CommonStuff.Controls"
+                    xmlns:myConverters="clr-namespace:CommonStuff.Converters">
+    <!-- TabPanelEx -->
+    <Style TargetType="myControls:TabPanelEx">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="myControls:TabPanelEx">
+                    <Grid KeyboardNavigation.TabNavigation="Local"
+                          my:GridExtensions.Columns="Auto, Auto">
+                        <!-- This MaxWidth converter trick ensures that the NewTab ContentPresenter is always next to the WrapPanel, but not always on the far right -->
+                        <WrapPanel IsItemsHost="True">
+                            <WrapPanel.MaxWidth>
+                                <MultiBinding Converter="{myConverters:SubstractingMultiConverter}">
+                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <Binding Path="ActualWidth" ElementName="NewTabContentPresenter" />
+                                </MultiBinding>
+                            </WrapPanel.MaxWidth>
+                        </WrapPanel>
+                        <!-- NewTab tab -->
+                        <ContentPresenter x:Name="NewTabContentPresenter" Grid.Column="1" 
+                                          Content="{TemplateBinding NewTabHeader}"
+                                          Width="Auto" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SmileyPack IsDefault="true">
+  <Smiley FileName="happy.png" TextShortcuts=":) :-)" />
+  <Smiley FileName="heart.png" TextShortcuts="&lt;3" />
+  <Smiley FileName="sad.png" TextShortcuts=":( :-(" />
+  <Smiley FileName="smile.png" TextShortcuts=":D :-D" />
+  <Smiley FileName="tongue.png" TextShortcuts=":P :-P" />
+  <Smiley FileName="meh.png" TextShortcuts=":| :-|" />
+  <Smiley FileName="omg.png" TextShortcuts="O.O O_O" />
+</SmileyPack>

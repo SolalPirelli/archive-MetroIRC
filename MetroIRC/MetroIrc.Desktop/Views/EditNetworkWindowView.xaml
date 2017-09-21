@@ -1,0 +1,150 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+
+<UserControl x:Class="MetroIrc.Desktop.Views.EditNetworkWindowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:myConverters="clr-namespace:MetroIrc.Desktop.Converters"
+             xmlns:loc="clr-namespace:WpfLoc;assembly=WpfLoc"
+             xmlns:com="clr-namespace:CommonStuff;assembly=CommonStuff"
+             xmlns:comConverters="clr-namespace:CommonStuff.Converters;assembly=CommonStuff"
+             xmlns:metro="clr-namespace:MetroControls;assembly=MetroControls"
+             MaxWidth="350"
+             FocusManager.FocusedElement="{Binding ElementName=HostNameTextBox}">   
+    <Grid Margin="5,1"
+          com:GridExtensions.Columns="*, 160"
+          com:GridExtensions.Rows="16xAuto">
+        <!-- Server header -->
+        <TextBlock Grid.ColumnSpan="2" 
+                   Style="{StaticResource HeaderTextBlock}"
+                   Text="{loc:Translate EditNetworkWindow, Server}" />
+
+        <!-- Address -->
+        <TextBlock Grid.Row="1"
+                   Style="{StaticResource FormTextBlock}"
+                   Text="{loc:Translate EditNetworkWindow, Address}" />
+        <TextBox x:Name="HostNameTextBox"
+                 Grid.Column="1" Grid.Row="1"
+                 Text="{Binding NetworkInfo.HostName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- Password -->
+        <TextBlock Grid.Row="2"
+                   Style="{StaticResource FormTextBlock}"
+                   Text="{loc:Translate EditNetworkWindow, Password}" />
+        <TextBox Grid.Column="1" Grid.Row="2"
+                 Text="{Binding NetworkInfo.Password}" />
+
+        <!-- Port -->
+        <TextBlock Grid.Row="3" 
+                   Style="{StaticResource FormTextBlock}"
+                   Text="{loc:Translate EditNetworkWindow, PortNumber}" />
+        <metro:IntegerUpDown Grid.Row="3"
+                             Grid.Column="1"
+                             Value="{Binding NetworkInfo.PortNumber}"
+                             HorizontalAlignment="Left" />
+
+        <!-- Encoding -->
+        <TextBlock Grid.Row="4"
+                   Style="{StaticResource FormTextBlock}"
+                   Text="{loc:Translate EditNetworkWindow, Encoding}" />
+        <ComboBox Grid.Column="1"
+                  Grid.Row="4"
+                  ItemsSource="{Binding Encodings}"
+                  SelectedItem="{Binding NetworkInfo.Encoding}"
+                  DisplayMemberPath="EncodingName" />
+
+        <!-- Use SSL -->
+        <CheckBox Grid.Row="5"
+                  Grid.Column="1"
+                  IsChecked="{Binding NetworkInfo.UseSsl}"
+                  Content="{loc:Translate EditNetworkWindow, UseSsl}" />
+
+        <!-- Accept invalid certificates -->
+        <CheckBox Grid.Row="6"
+                  Grid.Column="1"
+                  IsChecked="{Binding NetworkInfo.AcceptInvalidCertificates}"
+                  Content="{loc:Translate EditNetworkWindow, AcceptInvalidCertificates}"
+                  Visibility="{Binding NetworkInfo.UseSsl, Converter={comConverters:BooleanToVisibilityConverter}}" />
+
+        <!-- Your details header -->
+        <TextBlock Grid.Row="7" 
+                   Style="{StaticResource HeaderTextBlock}"
+                   Grid.ColumnSpan="2" 
+                   Text="{loc:Translate EditNetworkWindow, YourDetails}" />
+
+        <!-- Use global info -->
+        <CheckBox Grid.Row="8"
+                  Grid.ColumnSpan="2" 
+                  IsChecked="{Binding NetworkInfo.UseGlobalInfo}" 
+                  Content="{loc:Translate EditNetworkWindow, UseGlobalInfo}" />
+
+        <!-- User name-->
+        <TextBlock Grid.Row="9"
+                   Style="{StaticResource FormTextBlock}"
+                   Text="{loc:Translate EditNetworkWindow, Nickname}" 
+                   Visibility="{Binding NetworkInfo.UseGlobalInfo, Converter={comConverters:BooleanToOppositeVisibilityConverter}}" />
+        <TextBox Grid.Column="1" Grid.Row="9" 
+                 Text="{Binding NetworkInfo.Nickname, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                 Visibility="{Binding NetworkInfo.UseGlobalInfo, Converter={comConverters:BooleanToOppositeVisibilityConverter}}" />
+
+        <!-- Real name -->
+        <TextBlock Grid.Row="10"
+                   Style="{StaticResource FormTextBlock}"
+                   Text="{loc:Translate EditNetworkWindow, RealName}" 
+                   Visibility="{Binding NetworkInfo.UseGlobalInfo, Converter={comConverters:BooleanToOppositeVisibilityConverter}}" />
+        <TextBox Grid.Column="1"
+                 Grid.Row="10" 
+                 Text="{Binding NetworkInfo.RealName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                 Visibility="{Binding NetworkInfo.UseGlobalInfo, Converter={comConverters:BooleanToOppositeVisibilityConverter}}" />
+
+        <!-- Connection header -->
+        <TextBlock Grid.Row="11" 
+                   Grid.ColumnSpan="2" 
+                   Style="{StaticResource HeaderTextBlock}"
+                   Text="{loc:Translate EditNetworkWindow, Connection}" />
+
+        <!-- Join on startup -->
+        <CheckBox Grid.Row="12" Grid.ColumnSpan="2"
+                  IsChecked="{Binding NetworkInfo.JoinOnStartup}"
+                  Content="{loc:Translate EditNetworkWindow, JoinOnStartup}" />
+
+        <!-- Join command -->
+        <TextBlock Grid.Row="13" 
+                   Style="{StaticResource FormTextBlock}"
+                   Text="{loc:Translate EditNetworkWindow, JoinCommand}" />
+        <TextBox Grid.Row="13" 
+                 Grid.Column="1" 
+                 Text="{Binding NetworkInfo.JoinCommand}" />
+
+
+        <!-- Favorite channels -->
+        <TextBlock Grid.Row="14"
+                   Style="{StaticResource FormTextBlock}"
+                   Text="{loc:Translate EditNetworkWindow, FavoriteChannels}" />
+        <TextBox Grid.Row="14"
+                 Grid.Column="1"
+                 Text="{Binding NetworkInfo.FavoriteChannels, Converter={myConverters:ChannelInfoListToStringConverter}}" />
+
+        <!-- Ok/Cancel Buttons -->
+        <Grid Grid.Row="15"
+              Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
+            </Grid.ColumnDefinitions>
+
+            <Button IsCancel="True"
+                    Content="{loc:Translate Global, Cancel}"
+                    Command="{Binding CancelCommand}" />
+
+            <Button Grid.Column="2"
+                    IsDefault="True"
+                    Content="{loc:Translate Global, Ok}"
+                    Command="{Binding OkCommand}" />
+        </Grid>
+    </Grid>
+</UserControl>

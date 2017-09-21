@@ -1,0 +1,186 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+    
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- User icon -->
+    <DrawingImage x:Key="UserIcon"
+                  x:Shared="False">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{DynamicResource LightForegroundBrush}"
+                             Geometry="M0,20 C0,12 0,12 2,10 C0,8 1,4 5,4 C9,4 10,8 8,10 C10,12 10,12 10,20 Z">
+                <GeometryDrawing.Pen>
+                    <Pen Brush="{DynamicResource BorderBrush}" Thickness="1" />
+                </GeometryDrawing.Pen>
+            </GeometryDrawing>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- Channel icon (Two people) -->
+    <DrawingImage x:Key="ChannelIcon"
+                  x:Shared="False">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="{DynamicResource LightForegroundBrush}" 
+                                 Geometry="M4,18 C4,10 4,10 6,8 C4,6 5,2 9,2 C13,2 14,6 12,8 C14,10 14,10 14,18 Z">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{DynamicResource BorderBrush}" Thickness="1" />
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="{DynamicResource ForegroundBrush}" 
+                                 Geometry="M0,20 C0,12 0,12 2,10 C0,8 1,4 5,4 C9,4 10,8 8,10 C10,12 10,12 10,20 Z">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{DynamicResource BorderBrush}" Thickness="1" />
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- Lock icon -->
+    <DrawingImage x:Key="LockIcon"
+                  x:Shared="False">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Geometry="M5,6 V3 L6,2 H9 L10,3 V6">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{DynamicResource LightForegroundBrush}" />
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="{DynamicResource LightForegroundBrush}" 
+                                 Geometry="M3,6 H12 V13 H3 V5.5 Z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    
+    <SolidColorBrush x:Key="WindowIconForegroundBrush" Color="#F0F0F0" />
+    <SolidColorBrush x:Key="WindowIconBackgroundBrush" Color="#202020" />
+    <SolidColorBrush x:Key="WindowIconBorderBrush" Color="#505050" />
+
+    <!-- Settings window icon (gear) -->
+    <DrawingImage x:Key="SettingsWindowIcon"
+                  x:Shared="False">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="{StaticResource WindowIconBackgroundBrush}"
+                                 Geometry="M-0.5,0 H16 V16 H0 V0">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{StaticResource WindowIconBorderBrush}" />
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <GeometryGroup.Transform>
+                                <TranslateTransform X="0.5" Y="0.5" />
+                            </GeometryGroup.Transform>
+                            <PathGeometry Figures="M7,2 H8 V5 H9 L11,3 L12,4 L10,6 V7 H13 V8 H10 V9 L12,11 L11,12 L9,10 H8 V13 H7 V10 H6 L4,12 L3,11 L5,9 V8 H2 V7 H5 V6 L3,4 L4,3 L6,5 H7 Z" />
+                            <PathGeometry Figures="M9.3,5.7 11.5,3.5 M9.3,9.3 L11.5,11.5 M5.7,9.3 L3.5,11.5 M5.7,5.7 L3.5,3.5" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{StaticResource WindowIconForegroundBrush}" />
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- About window icon (person) -->
+    <DrawingImage x:Key="AboutWindowIcon"
+                  x:Shared="False">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="{StaticResource WindowIconBackgroundBrush}"
+                                 Geometry="M-0.5,0 H16 V16 H0 V0">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{StaticResource WindowIconBorderBrush}"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="{StaticResource WindowIconForegroundBrush}"
+                                 Geometry="M4,15 C4,9 4,9 6,8 C4,5 5,1 8,1 C11,1 12,5 10,8 C12,9 12,9 12,15 Z"/>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    
+    <!-- Manage networks window icon (plus sign) -->
+    <DrawingImage x:Key="ManageNetworksWindowIcon"
+                  x:Shared="True">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="{StaticResource WindowIconBackgroundBrush}" Geometry="M-0.5,0 H16 V16 H0 V0">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{StaticResource WindowIconBorderBrush}"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="M2,8 H14 M8,2 V14">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{StaticResource WindowIconForegroundBrush}" Thickness="1.5" />
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    
+    <!-- Add smiley window icon (smiley face) -->
+    <DrawingImage x:Key="AddSmileyWindowIcon"
+                  x:Shared="False">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="{StaticResource WindowIconBackgroundBrush}"
+                                 Geometry="M-0.5,0 H16 V16 H0 V0">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{StaticResource WindowIconBorderBrush}"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="{StaticResource WindowIconForegroundBrush}">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="7" RadiusY="7" Center="8,8" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="{StaticResource WindowIconBackgroundBrush}" Geometry="M3,10 C6,15 10,15 13,10 Z" />
+                <GeometryDrawing Brush="{StaticResource WindowIconBackgroundBrush}">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <EllipseGeometry RadiusX="2" RadiusY="2" Center="5,6" />
+                            <EllipseGeometry RadiusX="2" RadiusY="2" Center="11,6" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    
+    <!-- Add/Edit network window icon (bullet list) -->
+    <DrawingImage x:Key="EditNetworkWindowIcon"
+                  x:Shared="False">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="{StaticResource WindowIconBackgroundBrush}"
+                                 Geometry="M-0.5,0 H16 V16 H0 V0">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{StaticResource WindowIconBorderBrush}" />
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="{StaticResource WindowIconForegroundBrush}">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <EllipseGeometry RadiusX="1" RadiusY="1" Center="3,3.5" />
+                            <EllipseGeometry RadiusX="1" RadiusY="1" Center="3,8" />
+                            <EllipseGeometry RadiusX="1" RadiusY="1" Center="3,12.5" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="M6,3.5 H13 M6,8 H13 M6,12.5 H13">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="{StaticResource WindowIconForegroundBrush}" Thickness="1.5" />
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

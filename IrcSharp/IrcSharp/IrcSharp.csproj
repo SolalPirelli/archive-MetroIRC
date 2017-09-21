@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6FC44F17-113F-4E19-805D-763B0C3CCA0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IrcSharp</RootNamespace>
+    <AssemblyName>IrcSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Release\IrcSharp.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\IrcSharp2.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\IrcSharp2.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Internals\CapabilityHandlerAttribute.cs" />
+    <Compile Include="Internals\CapabilityParser.CapabilityHandlers.cs" />
+    <Compile Include="Internals\CapabilityParser.cs" />
+    <Compile Include="Internals\ConnectedObject.cs" />
+    <Compile Include="Ctcp\IrcClientSoftware.cs" />
+    <Compile Include="Ctcp\CtcpEventHandlers.cs" />
+    <Compile Include="Internals\ArrayExtensions.cs" />
+    <Compile Include="Internals\CtcpMessage.cs" />
+    <Compile Include="Internals\CtcpUtils.cs" />
+    <Compile Include="Internals\CharHelper.cs" />
+    <Compile Include="IrcCaseMapping.cs" />
+    <Compile Include="IrcChannelModeCollection.cs" />
+    <Compile Include="IrcChannelTopic.cs" />
+    <Compile Include="IrcMode.cs" />
+    <Compile Include="IrcNetworkParameters.cs" />
+    <Compile Include="Internals\IrcUtils.cs" />
+    <Compile Include="Internals\ModifiedName.cs" />
+    <Compile Include="Internals\ObservableCollectionEx.cs" />
+    <Compile Include="Ctcp\CtcpEventArgs.cs" />
+    <Compile Include="Ctcp\CtcpClient.CommandHandlers.cs" />
+    <Compile Include="IdentServer.cs" />
+    <Compile Include="Internals\IrcUserModeCollection.cs" />
+    <Compile Include="Internals\ReflectionHelper.cs" />
+    <Compile Include="Internals\StringExtensions.cs" />
+    <Compile Include="Internals\TemporaryInformation.cs" />
+    <Compile Include="Internals\TimeHelper.cs" />
+    <Compile Include="Ctcp\CtcpChannelExtension.cs" />
+    <Compile Include="IrcChannelModes.cs" />
+    <Compile Include="IrcErrorCode.cs" />
+    <Compile Include="IrcNetwork.cs" />
+    <Compile Include="IrcReplyCode.cs" />
+    <Compile Include="Internals\IrcCommandAttribute.cs" />
+    <Compile Include="Internals\CtcpCommandAttribute.cs" />
+    <Compile Include="IrcChannel.cs" />
+    <Compile Include="Internals\IrcMessage.cs" />
+    <Compile Include="IrcUser.cs" />
+    <Compile Include="Ctcp\CtcpClient.cs" />
+    <Compile Include="IrcChannelKind.cs" />
+    <Compile Include="IrcChannelVisibility.cs" />
+    <Compile Include="Ctcp\CtcpUserExtension.cs" />
+    <Compile Include="IrcUserChannelModePair.cs" />
+    <Compile Include="IrcUserLoginModes.cs" />
+    <Compile Include="IrcChannelUserModes.cs" />
+    <Compile Include="IrcUserModes.cs" />
+    <Compile Include="IrcClient.cs" />
+    <Compile Include="IrcClient.CommandHandlers.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="Internals\ObservableObject.cs" />
+    <Compile Include="TcpListenerWrapper.cs" />
+    <Compile Include="TcpWrapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EventHandlers.cs" />
+    <Compile Include="Validation\IrcValidate.cs" />
+    <Compile Include="Validation\Validate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\License.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+</Project>

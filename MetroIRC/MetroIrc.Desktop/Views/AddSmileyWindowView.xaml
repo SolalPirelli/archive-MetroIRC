@@ -1,0 +1,51 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+    
+<UserControl x:Class="MetroIrc.Desktop.Views.AddSmileyWindowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:com="clr-namespace:CommonStuff;assembly=CommonStuff"
+             xmlns:comConverters="clr-namespace:CommonStuff.Converters;assembly=CommonStuff"
+             xmlns:loc="clr-namespace:WpfLoc;assembly=WpfLoc"
+             Width="300">
+    <Grid com:GridExtensions.Rows="Auto, Auto, 20, Auto"
+          com:GridExtensions.Columns="Auto, *, Auto">
+        <!-- Image path -->
+        <TextBlock Text="{loc:Translate SmileySettings, NewSmileyImage}" />
+        <TextBox Grid.Column="1"
+                 Text="{Binding ImagePath}" />
+        <Button Grid.Column="2"
+                Content="{loc:Translate Global, Browse}"
+                Command="{Binding BrowseCommand}" />
+        
+        <!-- Shortcuts -->
+        <TextBlock Grid.Row="1"
+                   Text="{loc:Translate SmileySettings, NewSmileyShortcuts}" />
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="2"
+                 Text="{Binding Shortcuts, Converter={comConverters:ObservableCollectionToStringConverter}}" />
+        
+        <!-- Ok/Cancel Buttons -->
+        <Grid Grid.Row="3"
+              Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
+            </Grid.ColumnDefinitions>
+
+            <Button IsCancel="True"
+                    Content="{loc:Translate Global, Cancel}"
+                    Command="{Binding CancelCommand}" />
+
+            <Button Grid.Column="2"
+                    IsDefault="True"
+                    Content="{loc:Translate Global, Ok}"
+                    Command="{Binding OkCommand}" />
+        </Grid>
+    </Grid>
+</UserControl>

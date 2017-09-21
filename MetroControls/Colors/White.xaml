@@ -1,0 +1,172 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+    
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:o="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+    <!-- Normal brushes -->
+    <SolidColorBrush x:Key="ForegroundBrush"
+                     Color="#505050" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="LightForegroundBrush" 
+                     Color="#808080" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="BackgroundBrush"
+                     Color="#FDFDFD" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="BorderBrush"
+                     Color="#BBBBBB" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="DisabledForegroundBrush" 
+                     Color="#B0B0B0" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" 
+                     Color="#E0E0E0" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="DisabledBorderBrush"
+                     Color="#C0C0C0" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="ItemHoverForegroundBrush"
+                     Color="#404040" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="ItemHoverBackgroundBrush"
+                     Color="#E0E0E0" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="ItemHoverBorderBrush"
+                     Color="#A0A0A0" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="SelectedItemBackgroundBrush"
+                     Color="#F0F0F0" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="SelectedItemBorderBrush"
+                     Color="#909090" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="SelectedItemDisabledForegroundBrush"
+                     Color="#909090" 
+                     o:Freeze="True" />
+
+    <!-- Special brushes -->
+    <SolidColorBrush x:Key="SpecialForegroundBrush" 
+                     Color="#494949" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="SpecialBackgroundBrush"
+                     Color="#F0F0F0" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="SpecialBorderBrush"
+                     Color="#B0B0B0" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="ErrorOutlineBrush"
+                     Color="#C00000" 
+                     o:Freeze="True" />
+
+    <LinearGradientBrush x:Key="TopShadowBrush"
+                         StartPoint="0,0" EndPoint="0,1"
+                         o:Freeze="True">
+        <GradientStop Offset="0" 
+                      Color="#09000000" 
+                      o:Freeze="True" />
+        <GradientStop Offset="1" 
+                      Color="#00000000" 
+                      o:Freeze="True" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BottomShadowBrush"
+                         StartPoint="0,0" EndPoint="0,1"
+                         o:Freeze="True">
+        <GradientStop Offset="0" 
+                      Color="#00000000" 
+                      o:Freeze="True" />
+        <GradientStop Offset="1" 
+                      Color="#09000000" 
+                      o:Freeze="True" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="LeftShadowBrush"
+                         StartPoint="0,0" EndPoint="1,0"
+                         Opacity="0.6"
+                         o:Freeze="True">
+        <GradientStop Offset="0" 
+                      Color="#09000000" 
+                      o:Freeze="True" />
+        <GradientStop Offset="1"
+                      Color="#00000000" 
+                      o:Freeze="True" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="RightShadowBrush"
+                         StartPoint="0,0" EndPoint="1,0"
+                         Opacity="0.6"
+                         o:Freeze="True">
+        <GradientStop Offset="0"
+                      Color="#00000000" 
+                      o:Freeze="True" />
+        <GradientStop Offset="1" 
+                      Color="#09000000" 
+                      o:Freeze="True" />
+    </LinearGradientBrush>
+
+    <!-- Brushes for specific controls -->
+    <SolidColorBrush x:Key="ButtonBackgroundBrush"
+                     Color="#F0F0F0" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="ButtonHoverBackgroundBrush"
+                     Color="#E9E9E9" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="ButtonPressedBackgroundBrush"
+                     Color="#E0E0E0" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="DefaultButtonOutlineBrush"
+                     Color="#0090E0" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="CancelButtonOutlineBrush"
+                     Color="#E00000" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="TabForegroundBrush"
+                     Color="#A0A0A0" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="TabSelectedForegroundBrush"
+                     Color="#000000" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="HyperlinkForegroundBrush"
+                     Color="#0078CE" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="HyperlinkHoverForegroundBrush"
+                     Color="#0094FF" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="SelectionBrush"
+                     Color="#B0B0B0"
+                     Opacity="0.8" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="ProgressBarForegroundBrush"
+                     Color="#006000" 
+                     o:Freeze="True" />
+
+    <!-- Window brushes -->
+    <SolidColorBrush x:Key="WindowBackgroundBrush"
+                     Color="#FFFFFF" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="WindowBorderForegroundBrush"
+                     Color="#A0A0A0" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="WindowGlyphForegroundBrush"
+                     Color="#909090" 
+                     o:Freeze="True" />
+    <SolidColorBrush x:Key="WindowGlyphHoverForegroundBrush"
+                     Color="#303030" 
+                     o:Freeze="True" />
+
+    <SolidColorBrush x:Key="WindowCloseGlyphHoverForegroundBrush"
+                     Color="#A00000" 
+                     o:Freeze="True" />
+</ResourceDictionary>

@@ -1,0 +1,47 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:my="clr-namespace:MetroIrc;assembly=MetroIrc.Common"
+                    xmlns:myConverters="clr-namespace:MetroIrc.Desktop.Converters"
+                    xmlns:com="clr-namespace:CommonStuff;assembly=CommonStuff"
+                    xmlns:loc="clr-namespace:WpfLoc;assembly=WpfLoc">
+    <!-- To use commands, Binding MainWindow.DataContext.SelectedNetwork.XXXCommand, Source={x:Static Application.Current}
+         Do not use my:App.Current, it's ambiguous since it's a "new" property -->
+    <DataTemplate DataType="{x:Type my:IrcMessage}">
+        <RichTextBox Style="{StaticResource ReadOnlyRichTextBox}"
+                     Margin="0"
+                     com:RichTextBoxExtensions.BoundDocument="{Binding Converter={myConverters:MessageFormattingConverter}, Mode=OneTime}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type my:ChannelListMessage}">
+        <StackPanel>
+            <TextBlock Style="{StaticResource TitleTextBlock}"
+                       Text="{loc:Translate Conversation, ChannelList}" />
+            <ItemsControl Style="{StaticResource AutoScrollItemsControlStyle}" 
+                          ItemsSource="{Binding Channels, Mode=OneTime}"
+                          Height="250"
+                          Margin="5,2"
+                          BorderBrush="{DynamicResource BorderBrush}"
+                          BorderThickness="1">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Style="{StaticResource LinkTextBlock}"
+                                   Text="{Binding FullName, Mode=OneTime}"
+                                   FontSize="14">
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick"
+                                              Command="{Binding MainWindow.DataContext.SelectedNetwork.JoinChannelCommand, Source={x:Static Application.Current}}"
+                                              CommandParameter="{Binding Mode=OneTime}" />
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

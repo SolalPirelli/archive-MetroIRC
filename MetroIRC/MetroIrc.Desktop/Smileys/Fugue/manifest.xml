@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SmileyPack IsDefault="true">
+  <Smiley FileName="happy.png" TextShortcuts=":) :-)" />
+  <Smiley FileName="sad.png" TextShortcuts=":( :-(" />
+  <Smiley FileName="crying.png" TextShortcuts=":'( :'-(" />
+  <Smiley FileName="lol.png" TextShortcuts=":D :-D" />
+  <Smiley FileName="green.png" TextShortcuts=":DD :-DD" />
+  <Smiley FileName="wink.png" TextShortcuts=";) ;-)" />
+  <Smiley FileName="tongue.png" TextShortcuts=":P :-P" />
+  <Smiley FileName="meh.png" TextShortcuts=":| :-|" />
+  <Smiley FileName="confused.png" TextShortcuts=":S :-S" />
+  <Smiley FileName="surprise.png" TextShortcuts=":O :-O" />
+  <Smiley FileName="glasses.png" TextShortcuts="B) B-) 8) 8-)" />
+  <Smiley FileName="angry.png" TextShortcuts=">:( >:-(" />
+  <Smiley FileName="omg.png" TextShortcuts="O.O O_O" />
+</SmileyPack>

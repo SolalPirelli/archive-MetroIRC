@@ -1,0 +1,46 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="SentPrivateMessageBackgroundBrush"
+                     Color="#505050" />
+    <SolidColorBrush x:Key="SpecialPrivateMessageBackgroundBrush" 
+                     Color="#303030" />
+    
+    <SolidColorBrush x:Key="MessageForegroundBrush" 
+                     Color="#F0F0F0" />
+    <SolidColorBrush x:Key="JoinMessageForegroundBrush" 
+                     Color="#00FF33" />
+    <SolidColorBrush x:Key="PartMessageForegroundBrush" 
+                     Color="#FF0000" />
+    <SolidColorBrush x:Key="KickMessageForegroundBrush" 
+                     Color="#FF3300" />
+    <SolidColorBrush x:Key="QuitMessageForegroundBrush" 
+                     Color="#FF0000" />
+    <SolidColorBrush x:Key="ActionMessageForegroundBrush" 
+                     Color="#FFAA00" />
+    <SolidColorBrush x:Key="ModeMessageForegroundBrush" 
+                     Color="#FFAA00" />
+    <SolidColorBrush x:Key="NickChangeMessageForegroundBrush" 
+                     Color="#FFAA00" />
+    <SolidColorBrush x:Key="InfoMessageForegroundBrush" 
+                     Color="#0088FF" />
+    <SolidColorBrush x:Key="ErrorMessageForegroundBrush" 
+                     Color="#FF0000" />
+
+    <SolidColorBrush x:Key="TimeStampForegroundBrush"
+                     Color="#707070" />
+
+    <SolidColorBrush x:Key="StatusConnectedBrush" 
+                     Color="#C0C000" />
+    <SolidColorBrush x:Key="StatusAuthenticatedBrush" 
+                     Color="#00F000" />
+    <SolidColorBrush x:Key="StatusConnectionLostBrush" 
+                     Color="#F00000" />
+    <SolidColorBrush x:Key="StatusNotConnectedBrush" 
+                     Color="#A00000" />
+</ResourceDictionary>

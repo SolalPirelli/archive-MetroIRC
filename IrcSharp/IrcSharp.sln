@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrcSharp", "IrcSharp\IrcSharp.csproj", "{6FC44F17-113F-4E19-805D-763B0C3CCA0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrcSharp.Examples", "IrcSharp.Examples\IrcSharp.Examples.csproj", "{0076BD1E-4F9F-4DA0-8A7B-5C22484B2C25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrcSharp.Tests", "IrcSharp.Tests\IrcSharp.Tests.csproj", "{0461D799-FEC5-4C4D-A712-6E3695854131}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FC44F17-113F-4E19-805D-763B0C3CCA0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FC44F17-113F-4E19-805D-763B0C3CCA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FC44F17-113F-4E19-805D-763B0C3CCA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FC44F17-113F-4E19-805D-763B0C3CCA0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0076BD1E-4F9F-4DA0-8A7B-5C22484B2C25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0076BD1E-4F9F-4DA0-8A7B-5C22484B2C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0076BD1E-4F9F-4DA0-8A7B-5C22484B2C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0076BD1E-4F9F-4DA0-8A7B-5C22484B2C25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0461D799-FEC5-4C4D-A712-6E3695854131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0461D799-FEC5-4C4D-A712-6E3695854131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0461D799-FEC5-4C4D-A712-6E3695854131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0461D799-FEC5-4C4D-A712-6E3695854131}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

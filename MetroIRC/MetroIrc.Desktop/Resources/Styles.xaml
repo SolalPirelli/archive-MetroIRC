@@ -1,0 +1,345 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:myConverters="clr-namespace:MetroIrc.Desktop.Converters"
+                    xmlns:myControls="clr-namespace:MetroIrc.Desktop.Controls"
+                    xmlns:myExt="clr-namespace:MetroIrc.Desktop.Extensions"
+                    xmlns:my="clr-namespace:MetroIrc.Desktop"
+                    xmlns:com="clr-namespace:CommonStuff;assembly=CommonStuff"
+                    xmlns:comConverters="clr-namespace:CommonStuff.Converters;assembly=CommonStuff"
+                    xmlns:loc="clr-namespace:WpfLoc;assembly=WpfLoc"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:irc="clr-namespace:IrcSharp;assembly=IrcSharp">
+    <!-- Image style (resizes them correctly and prevents blurry display) -->
+    <Style x:Key="BitmapImageStyle" TargetType="Image">
+        <Setter Property="Width" Value="{Binding Source.PixelWidth, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Height" Value="{Binding Source.PixelHeight, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <!-- ItemsControl template with a ScrollViewer that auto-scrolls the items when a new one is added-->
+    <ControlTemplate x:Key="AutoScrollItemsControlTemplate"
+                     TargetType="ItemsControl">
+        <Border Background="{TemplateBinding Background}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                Height="{TemplateBinding ActualHeight}"
+                Width="{TemplateBinding ActualWidth}">
+            <ScrollViewer Focusable="False"
+                          HorizontalScrollBarVisibility="Disabled"
+                          com:ScrollExtensions.AutoScroll="BottomOnly"
+                          com:ScrollExtensions.AutoScrollSource="{TemplateBinding ItemsSource}">
+                <ItemsPresenter />
+            </ScrollViewer>
+        </Border>
+    </ControlTemplate>
+
+    <!-- ItemsControl style with the above template + virtualization -->
+    <Style x:Key="AutoScrollItemsControlStyle" TargetType="ItemsControl">
+        <Setter Property="Template" Value="{StaticResource AutoScrollItemsControlTemplate}" />
+
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <!-- The first three are necessary; the fourth one is for convenience. -->
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
+        <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling" />
+        <Setter Property="VirtualizingStackPanel.ScrollUnit" Value="Pixel" />
+    </Style>
+
+    <!-- ListBox template with the above template-->
+    <Style x:Key="AutoScrollListBoxStyle" TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
+        <Setter Property="Template" Value="{StaticResource AutoScrollItemsControlTemplate}" />
+    </Style>
+
+    <!-- TextBox pretending to be a TextBlock until you hover/click it -->
+    <Style TargetType="TextBox" x:Key="EditableUserTextBlock" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontWeight" Value="{StaticResource ExtremeFontWeight}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="Margin" Value="1,1,10,1" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+                <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- TextBlock for the IrcUserControl -->
+    <Style TargetType="TextBlock" x:Key="UserTextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="FontWeight" Value="{StaticResource ExtremeFontWeight}" />
+        <Setter Property="Margin" Value="1,1,10,1" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    </Style>
+
+    <!-- Read-only RTB -->
+    <Style TargetType="RichTextBox" x:Key="ReadOnlyRichTextBox" BasedOn="{StaticResource {x:Type RichTextBox}}">
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="IsDocumentEnabled" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    
+    <!-- "Spoiler" span; the text is invisible until you hover it -->
+    <Style TargetType="Span" x:Key="SpoilerSpan">
+        <Setter Property="Background" Value="{Binding Foreground, RelativeSource={RelativeSource Self}}" />
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Normal Run -->
+    <Style TargetType="Run">
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+    </Style>
+
+    <!-- Run for HL -->
+    <Style TargetType="Run" x:Key="HighlightedRun" BasedOn="{StaticResource {x:Type Run}}">
+        <Setter Property="Background" Value="{DynamicResource LightAccentBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+    </Style>
+
+    <!-- Message styles -->
+    <Style TargetType="Span" x:Key="NormalMessageStyle">
+        <Setter Property="Foreground" Value="{DynamicResource MessageForegroundBrush}" />
+        <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+    <Style TargetType="Span" x:Key="NoticeMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="FontStyle" Value="Italic" />
+    </Style>
+    <Style TargetType="Span" x:Key="InviteMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="FontStyle" Value="Italic" />
+    </Style>
+    <Style TargetType="Span" x:Key="JoinMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource JoinMessageForegroundBrush}" />
+    </Style>
+    <Style TargetType="Span" x:Key="PartMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource PartMessageForegroundBrush}" />
+    </Style>
+    <Style TargetType="Span" x:Key="KickMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource KickMessageForegroundBrush}" />
+    </Style>
+    <Style TargetType="Span" x:Key="QuitMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource QuitMessageForegroundBrush}" />
+    </Style>
+    <Style TargetType="Span" x:Key="ActionMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource ActionMessageForegroundBrush}" />
+        <Setter Property="FontStyle" Value="Italic" />
+        <Setter Property="FontWeight" Value="Regular" />
+    </Style>
+    <Style TargetType="Span" x:Key="UserModeMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource ModeMessageForegroundBrush}" />
+    </Style>
+    <Style TargetType="Span" x:Key="ChannelModeMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource ModeMessageForegroundBrush}" />
+    </Style>
+    <Style TargetType="Span" x:Key="NickChangeMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource NickChangeMessageForegroundBrush}" />
+    </Style>
+    <Style TargetType="Span" x:Key="InfoMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource InfoMessageForegroundBrush}" />
+    </Style>
+    <Style TargetType="Span" x:Key="ErrorMessageStyle" BasedOn="{StaticResource NormalMessageStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource ErrorMessageForegroundBrush}" />
+    </Style>
+
+
+    <!-- IrcUserControl shared ContextMenu -->
+    <ContextMenu x:Key="IrcUserControlContextMenu" 
+                 DataContext="{Binding MainWindow.DataContext.SelectedNetwork, Source={x:Static Application.Current}}">
+        <!-- Normal commands -->
+        <MenuItem Header="{loc:Translate Commands, OpenPrivateConversation}" 
+                  Command="{Binding OpenPrivateConversationCommand}"
+                  CommandParameter="{Binding PlacementTarget.DataContext.User, RelativeSource={RelativeSource AncestorType=ContextMenu}}" />
+        <MenuItem Header="{loc:Translate Commands, WhoIs}"
+                  Command="{Binding SendWhoIsCommand}"
+                  CommandParameter="{Binding PlacementTarget.DataContext.User, RelativeSource={RelativeSource AncestorType=ContextMenu}}" />
+        <!-- Op commands -->
+        <Separator Visibility="{Binding IsCurrentUserPrivileged, Converter={comConverters:BooleanToVisibilityConverter}}" />
+        <MenuItem Header="{loc:Translate Commands, Kick}"
+                  Command="{Binding KickCommand}"
+                  CommandParameter="{Binding PlacementTarget.DataContext.User, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                  Visibility="{Binding IsCurrentUserPrivileged,  Converter={comConverters:BooleanToVisibilityConverter}}" />
+        <MenuItem Header="{loc:Translate Commands, Ban}"
+                  Command="{Binding BanCommand}"
+                  CommandParameter="{Binding PlacementTarget.DataContext.User, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                  Visibility="{Binding IsCurrentUserPrivileged, Converter={comConverters:BooleanToVisibilityConverter}}" />
+    </ContextMenu>
+
+    <!-- IrcUserControl template -->
+    <ControlTemplate x:Key="IrcUserControlDefaultTemplate" TargetType="myControls:IrcUserControl">
+        <TextBlock Text="{TemplateBinding DisplayName}"
+                   Style="{StaticResource UserTextBlock}"
+                   DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                   HorizontalAlignment="Stretch"
+                   TextAlignment="{TemplateBinding TextAlignment}"
+                   ContextMenu="{StaticResource IrcUserControlContextMenu}">
+            <TextBlock.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick"
+                              Command="{Binding MainWindow.DataContext.SelectedNetwork.OpenPrivateConversationCommand, Source={x:Static Application.Current}}"
+                              CommandParameter="{Binding User}" />
+            </TextBlock.InputBindings>
+        </TextBlock>
+    </ControlTemplate>
+
+    <!-- IrcUserControl style -->
+    <Style TargetType="myControls:IrcUserControl">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+
+        <Setter Property="Template" Value="{StaticResource IrcUserControlDefaultTemplate}" />
+    </Style>
+
+
+    <!-- ChannelTopicControl template -->
+    <ControlTemplate x:Key="ChannelTopicControlDefaultTemplate" TargetType="myControls:ChannelTopicControl">
+        <Grid com:GridExtensions.Rows="Auto, Auto">
+            <RichTextBox x:Name="FormattedTopic"
+                         Style="{StaticResource ReadOnlyRichTextBox}"
+                         com:RichTextBoxExtensions.BoundDocument="{Binding Channel.Topic.Text, 
+                                                                           RelativeSource={RelativeSource TemplatedParent}, 
+                                                                           Converter={myConverters:MessageFormattingConverter}}"
+                         Margin="-2,0,0,0" />
+
+            <TextBox x:Name="EditTopicBox"
+                     Visibility="Collapsed"
+                     Text="{Binding TemporaryTopic,
+                                    RelativeSource={RelativeSource TemplatedParent}, 
+                                    UpdateSourceTrigger=PropertyChanged}"
+                     TextWrapping="Wrap"
+                     myExt:TextBoxExtensions.AllowFormattingChars="True">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter" Command="{Binding FinishEditCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                </TextBox.InputBindings>
+            </TextBox>
+
+            <TextBlock x:Name="TopicPlaceholder"
+                       Visibility="Collapsed"
+                       Text="{loc:Translate ChannelTopic, Placeholder}"
+                       TextTrimming="CharacterEllipsis" />
+
+            <TextBlock Grid.Row="1"
+                       x:Name="TopicInfo"
+                       Text="{Binding TopicInfo, RelativeSource={RelativeSource TemplatedParent}}"
+                       TextTrimming="CharacterEllipsis" />
+
+            <StackPanel Grid.Row="1"
+                        x:Name="EditButtonsContainer"
+                        HorizontalAlignment="Right"
+                        Visibility="Collapsed"
+                        Orientation="Horizontal">
+                <Button x:Name="EditButton"
+                        Style="{StaticResource TextButtonStyle}"
+                        Content="{loc:Translate ChannelTopic, Edit}" 
+                        Command="{Binding EditCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+
+                <Button x:Name="FinishEditButton" 
+                        Style="{StaticResource TextButtonStyle}"
+                        Content="{loc:Translate ChannelTopic, FinishEdit}" 
+                        Visibility="Collapsed" 
+                        Command="{Binding FinishEditCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+
+                <Button x:Name="ClearButton" 
+                        Style="{StaticResource TextButtonStyle}"
+                        Content="{loc:Translate ChannelTopic, CancelEdit}" 
+                        Visibility="Collapsed" 
+                        Command="{Binding CancelEditCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+            </StackPanel>
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding ShowTopic, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter TargetName="FormattedTopic" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="TopicPlaceholder" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding ShowTopicInfo, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter TargetName="TopicInfo" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="EditButtonsContainer" Property="Grid.Row" Value="0" />
+            </DataTrigger>
+
+            <Trigger Property="CanEdit" Value="True">
+                <Setter TargetName="EditButtonsContainer" Property="Visibility" Value="Visible" />
+            </Trigger>
+
+            <DataTrigger Binding="{Binding IsEditing, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter TargetName="EditButtonsContainer" Property="Grid.Row" Value="1" />
+                <Setter TargetName="FormattedTopic" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="TopicPlaceholder" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="EditTopicBox" Property="Visibility" Value="Visible" />
+                <Setter TargetName="EditButton" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="FinishEditButton" Property="Visibility" Value="Visible" />
+                <Setter TargetName="ClearButton" Property="Visibility" Value="Visible" />
+
+                <Setter TargetName="EditTopicBox" Property="FocusManager.FocusedElement" Value="{Binding ElementName=EditTopicBox}" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- ChannelTopicControl style -->
+    <Style TargetType="myControls:ChannelTopicControl" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Template" Value="{StaticResource ChannelTopicControlDefaultTemplate}" />
+    </Style>
+    
+    
+    <!-- ChannelUsersControl template -->
+    <ControlTemplate x:Key="ChannelUsersControlDefaultTemplate" TargetType="myControls:ChannelUsersControl">
+        <ItemsControl ItemsSource="{Binding Users, RelativeSource={RelativeSource TemplatedParent}}"
+                      Visibility="{my:SettingBinding ShowUserList, Converter={comConverters:BooleanToVisibilityConverter}, Mode=OneWay}"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      ScrollViewer.CanContentScroll="True">
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer Focusable="False">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type sys:String}">
+                    <TextBlock Text="{Binding Mode=OneTime}"
+                               FontWeight="{StaticResource SpecialFontWeight}"
+                               Margin="0,8,2,1" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type irc:IrcUserChannelModePair}">
+                    <myControls:IrcUserControl User="{Binding User, Mode=OneTime}"
+                                               DisplayName="{Binding User.Nickname, Mode=OneTime}"
+                                               Margin="12,1,2,1" />
+                </DataTemplate>
+            </ItemsControl.Resources>
+        </ItemsControl>
+    </ControlTemplate>
+    
+    <Style TargetType="myControls:ChannelUsersControl">
+        <Setter Property="Template" Value="{StaticResource ChannelUsersControlDefaultTemplate}" />
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,22 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+
+<metro:MetroWindow x:Class="MetroIrc.Desktop.Views.MetroDialogWindowView"
+                   x:ClassModifier="internal"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:metro="clr-namespace:MetroControls;assembly=MetroControls"
+                   WindowStartupLocation="CenterOwner"
+                   SizeToContent="WidthAndHeight"
+                   ResizeMode="NoResize"
+                   ShowMaximizeButton="False"
+                   ShowMinimizeButton="False"
+                   ShowIcon="False"
+                   Icon="{Binding Icon}"
+                   ShowInTaskbar="{Binding ShowInTaskbar}"
+                   Title="{Binding Title}">
+    <ContentPresenter Content="{Binding}" />
+</metro:MetroWindow>

@@ -1,0 +1,73 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+    
+<UserControl x:Class="MetroIrc.Desktop.Views.IrcNetworkInformationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:WpfLoc;assembly=WpfLoc"
+             xmlns:myConverters="clr-namespace:MetroIrc.Desktop.Converters"
+             xmlns:com="clr-namespace:CommonStuff;assembly=CommonStuff"
+             xmlns:comConverters="clr-namespace:CommonStuff.Converters;assembly=CommonStuff">
+    <Grid com:GridExtensions.Columns="*, *"
+          com:GridExtensions.Rows="6xAuto, *">
+        <!-- Status header -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="{loc:Translate NetworkInformation, Status}" />
+        
+        <!-- Connection status -->
+        <TextBlock Grid.Row="1" 
+                   Style="{StaticResource FormTextBlock}"
+                   Text="{loc:Translate NetworkInformation, ConnectionStatus}" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding Network.ConnectionStatus, Converter={myConverters:EnumTranslationConverter}}"
+                   Foreground="{Binding Network.ConnectionStatus, Converter={myConverters:ConnectionStatusToBrushConverter}}" />
+
+        <!-- Current nick -->
+        <TextBlock Grid.Row="2" 
+                   Style="{StaticResource FormTextBlock}"
+                   Text="{loc:Translate NetworkInformation, CurrentNickname}" />
+        <TextBlock Grid.Row="2"
+                   Grid.Column="1"
+                   Style="{StaticResource UserTextBlock}"
+                   Text="{Binding Network.CurrentUser.Nickname}" />
+
+        <!-- MOTD header -->
+        <TextBlock Grid.Row="3"
+                   Style="{StaticResource HeaderTextBlock}"
+                   Text="{loc:Translate NetworkInformation, MessageOfTheDay}"
+                   Visibility="{Binding Network.MessageOfTheDay, Converter={comConverters:NotNullToVisibilityConverter}}" />
+
+        <!-- MOTD -->
+        <FlowDocumentScrollViewer Grid.Row="4"
+                                  Grid.ColumnSpan="2"
+                                  Document="{Binding Network.MessageOfTheDay, Converter={myConverters:MessageFormattingConverter}}"
+                                  Visibility="{Binding Network.MessageOfTheDay, Converter={comConverters:NotNullToVisibilityConverter}}"
+                                  Margin="0,0,0,10"
+                                  Height="120"
+                                  HorizontalScrollBarVisibility="Disabled">
+            <FlowDocumentScrollViewer.Resources>
+                <Style TargetType="FlowDocument">
+                    <Setter Property="PagePadding" Value="0" />
+                    <Setter Property="FontFamily" Value="Consolas, Lucida Console" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                </Style>
+            </FlowDocumentScrollViewer.Resources>
+        </FlowDocumentScrollViewer>
+
+        <!-- Messages header -->
+        <TextBlock Grid.Row="5"
+                   Grid.ColumnSpan="2"
+                   Style="{StaticResource HeaderTextBlock}"
+                   Text="{loc:Translate NetworkInformation, MessagesFromServer}" />
+
+        <!-- Messages -->
+        <ItemsControl Grid.Row="6"
+                      Grid.ColumnSpan="2" 
+                      ItemsSource="{Binding Messages}"
+                      Template="{StaticResource IrcChannelLogTemplate}" />
+    </Grid>
+</UserControl>

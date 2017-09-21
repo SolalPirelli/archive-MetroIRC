@@ -1,0 +1,628 @@
+﻿<!--
+Copyright (C) 2011-2012, Solal Pirelli
+This code is licensed under a modified MIT License (see Properties\Licence.txt for details).
+Redistributions of this source code or compiled versions of it must retain the above copyright notice and the licence.
+-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:my="clr-namespace:MetroControls"
+                    xmlns:myInt="clr-namespace:MetroControls.Internals"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:prim="clr-namespace:System.Windows.Controls.Primitives;assembly=PresentationFramework">
+    <FontFamily x:Key="FontFamily">Segoe UI</FontFamily>
+    <FontWeight x:Key="FontWeight">SemiBold</FontWeight>
+    <FontWeight x:Key="SpecialFontWeight">Bold</FontWeight>
+    <FontWeight x:Key="ExtremeFontWeight">UltraBold</FontWeight>
+    <FontWeight x:Key="DisabledFontWeight">Normal</FontWeight>
+    <sys:Double x:Key="FontSize">13</sys:Double>
+    <sys:Double x:Key="ControlHeight">24</sys:Double>
+
+    <!-- Base styles -->
+    <Style TargetType="Control" x:Key="MetroBaseControlStyle">
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource FontWeight}" />
+
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+
+        <Setter Property="Margin" Value="3,5" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+
+        <!-- Remove the ugly default red validation border -->
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
+
+        <!-- Remove the ugly default dotted focus border -->
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+        <!-- Show the ToolTips (almost) instantly -->
+        <Setter Property="ToolTipService.InitialShowDelay" Value="50" />
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="FontWeight" Value="{StaticResource DisabledFontWeight}" />
+
+                <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" />
+            </Trigger>
+
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource ErrorOutlineBrush}" />
+                <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Control" x:Key="MetroBaseItemStyle" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+
+        <Setter Property="Cursor" Value="Hand" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource ItemHoverForegroundBrush}" />
+                <Setter Property="Background" Value="{DynamicResource ItemHoverBackgroundBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource ItemHoverBorderBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ToggleButton" x:Key="MetroBaseToggleButtonStyle" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="3,0,0,0" />
+    </Style>
+    
+    <Style TargetType="prim:ButtonBase" x:Key="MetroBaseButtonStyle" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroButtonBaseTemplate}" />
+
+        <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}" />
+
+        <Setter Property="Height" Value="{StaticResource ControlHeight}" />
+
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="4,2" />
+        <Setter Property="MinWidth" Value="90" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource ItemHoverForegroundBrush}" />
+                <Setter Property="Background" Value="{DynamicResource ButtonHoverBackgroundBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource ItemHoverBorderBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ButtonPressedBackgroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ContextMenu styles & default ContextMenu -->
+    <Style TargetType="ContextMenu" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroContextMenuTemplate}" />
+    </Style>
+
+    <Style TargetType="MenuItem" BasedOn="{StaticResource MetroBaseItemStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroMenuItemTemplate}" />
+
+        <Setter Property="Height" Value="{StaticResource ControlHeight}" />
+        <Setter Property="MinWidth" Value="100" />
+    </Style>
+
+    <ContextMenu x:Key="DefaultContextMenu" Style="{StaticResource {x:Type ContextMenu}}">
+        <MenuItem Command="ApplicationCommands.Copy" />
+        <MenuItem Command="ApplicationCommands.Cut" />
+        <MenuItem Command="ApplicationCommands.Paste" />
+    </ContextMenu>
+
+    <!-- TextBox styles -->
+    <Style TargetType="TextBox" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroTextBoxTemplate}" />
+
+        <Setter Property="ContextMenu" Value="{StaticResource DefaultContextMenu}" />
+
+        <Setter Property="SelectionBrush" Value="{DynamicResource SelectionBrush}" />
+
+        <Setter Property="Height" Value="{StaticResource ControlHeight}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="SpecialTextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="FontWeight" Value="{StaticResource SpecialFontWeight}" />
+        <Setter Property="Foreground" Value="{DynamicResource SpecialForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SpecialBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SpecialBorderBrush}" />
+    </Style>
+
+    <!-- RichTextBox style -->
+    <Style TargetType="RichTextBox" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="ContextMenu" Value="{StaticResource DefaultContextMenu}" />
+
+        <Setter Property="SelectionBrush" Value="{DynamicResource SelectionBrush}" />
+    </Style>
+
+    <!-- Label style -->
+    <Style TargetType="Label" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <!-- TextBlock styles -->
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource FontWeight}" />
+
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource LightForegroundBrush}" />
+
+        <Setter Property="Margin" Value="3,4" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="FormTextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="myInt:TypographyExtensions.TextCasing" Value="LowerCase" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="HeaderTextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontWeight" Value="{StaticResource SpecialFontWeight}" />
+
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+
+        <Setter Property="Margin" Value="5,0,0,0" />
+
+        <Setter Property="myInt:TypographyExtensions.TextCasing" Value="UpperCase" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="TitleTextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="FontWeight" Value="{StaticResource SpecialFontWeight}" />
+        <Setter Property="myInt:TypographyExtensions.TextCasing" Value="UpperCase" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="ClickableTextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="Cursor" Value="Hand" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource ItemHoverForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="LinkTextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="{DynamicResource HyperlinkForegroundBrush}" />
+        <Setter Property="TextDecorations" Value="Underline" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource HyperlinkHoverForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ListBox & ListBoxItem styles-->
+    <Style TargetType="ListBox" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroItemsControlTemplate}" />
+
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+
+        <Style.Triggers>
+            <!-- This means "scroll one unit at a time, not one group at a time"...go figure -->
+            <Trigger Property="IsGrouping" Value="True">
+                <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ListBoxItem" BasedOn="{StaticResource MetroBaseItemStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroListBoxItemTemplate}" />
+
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Padding" Value="10,0,0,0" />
+
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="True" />
+                    <Condition Property="IsEnabled" Value="False" />
+                </MultiTrigger.Conditions>
+
+                <Setter Property="Foreground" Value="{DynamicResource SelectedItemDisabledForegroundBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="True" />
+                    <Condition Property="IsEnabled" Value="True" />
+                </MultiTrigger.Conditions>
+
+                <Setter Property="Foreground" Value="{DynamicResource SelectedItemForegroundBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SelectedItemBackgroundBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource SelectedItemBorderBrush}" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- TreeView & TreeViewItem styles -->
+    <Style TargetType="TreeView" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroTreeViewTemplate}" />
+
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+    <Style TargetType="TreeViewItem" BasedOn="{StaticResource MetroBaseItemStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroTreeViewItemTemplate}" />
+
+        <Setter Property="Padding" Value="3,0,0,0" />
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource SelectedItemForegroundBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SelectedItemBackgroundBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource SelectedItemBorderBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ComboBox & ComboBoxItem styles -->
+    <Style TargetType="ComboBox" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroComboBoxTemplate}" />
+
+        <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}" />
+
+        <Setter Property="MinWidth" Value="50" />
+        <Setter Property="Height" Value="{StaticResource ControlHeight}" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ButtonHoverBackgroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ComboBoxItem" BasedOn="{StaticResource MetroBaseItemStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroComboBoxItemTemplate}" />
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource SelectedItemForegroundBrush}" />
+                <Setter Property="Background" Value="{DynamicResource SelectedItemBackgroundBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource SelectedItemBorderBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- TabControl & TabItem styles -->
+    <Style TargetType="TabControl">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Setter Property="Padding" Value="5,1" />
+    </Style>
+
+    <Style TargetType="TabItem" BasedOn="{StaticResource MetroBaseItemStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroTabItemTemplate}" />
+
+        <Setter Property="Foreground" Value="{DynamicResource TabForegroundBrush}" />
+
+        <Setter Property="FontSize" Value="20" />
+
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource TabHoverForegroundBrush}" />
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource TabSelectedForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <!-- override default -->
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- CheckBox & RadioButton styles-->
+    <Style TargetType="CheckBox" BasedOn="{StaticResource MetroBaseToggleButtonStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroCheckBoxTemplate}" />
+
+        <Setter Property="Padding" Value="4,1,0,0" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+
+    <Style TargetType="RadioButton" BasedOn="{StaticResource MetroBaseToggleButtonStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroRadioButtonTemplate}" />
+
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+
+    <!-- Button style -->
+    <Style TargetType="Button" BasedOn="{StaticResource MetroBaseButtonStyle}">
+        <Style.Triggers>
+            <Trigger Property="IsDefault" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource DefaultButtonOutlineBrush}" />
+            </Trigger>
+            <Trigger Property="IsCancel" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource CancelButtonOutlineBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <!-- RepeatButton style -->
+    <Style TargetType="RepeatButton" BasedOn="{StaticResource MetroBaseButtonStyle}" />
+
+    <!-- ToolTip style -->
+    <Style TargetType="ToolTip" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroToolTipTemplate}" />
+
+        <Setter Property="Height" Value="{StaticResource ControlHeight}" />
+
+        <Setter Property="BorderThickness" Value="0,1,1,1" />
+
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Placement" Value="Right" />
+    </Style>
+
+    <!-- Separator (for Menus) style -->
+    <Style TargetType="Separator" x:Key="{x:Static MenuItem.SeparatorStyleKey}">
+        <Setter Property="Template" Value="{StaticResource MetroSeparatorTemplate}" />
+        <Setter Property="Height" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Opacity" Value="0.6" />
+    </Style>
+
+    <!-- Hyperlink style -->
+    <Style TargetType="Hyperlink">
+        <Setter Property="Foreground" Value="{DynamicResource HyperlinkForegroundBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource FontWeight}" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource HyperlinkHoverForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- FlowDocumentScrollViewer style + simple style -->
+    <Style TargetType="FlowDocumentScrollViewer" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroFlowDocumentScrollViewerTemplate}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource SelectionBrush}" />
+    </Style>
+
+    <!-- ProgressBar style -->
+    <Style TargetType="ProgressBar" BasedOn="{StaticResource MetroBaseControlStyle}">
+        <Setter Property="Template" Value="{StaticResource MetroProgressBarTemplate}" />
+
+        <Setter Property="Foreground" Value="{DynamicResource ProgressBarForegroundBrush}" />
+    </Style>
+
+    <!-- GlyphButton style, + styles for MetroWindow -->
+    <Style TargetType="my:GlyphButton">
+        <Setter Property="Template" Value="{StaticResource MetroGlyphButtonTemplate}" />
+
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Stroke" Value="{DynamicResource LightForegroundBrush}" />
+
+        <Setter Property="Margin" Value="4" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource ForegroundBrush}" />
+            </Trigger>
+            
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Stroke" Value="{DynamicResource DisabledForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="my:GlyphButton" x:Key="WindowBorderButton" BasedOn="{StaticResource {x:Type my:GlyphButton}}">
+        <Setter Property="Stroke" Value="{DynamicResource WindowGlyphForegroundBrush}" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource WindowGlyphHoverForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="my:GlyphButton" x:Key="WindowBorderCloseButton" BasedOn="{StaticResource WindowBorderButton}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource WindowCloseGlyphHoverForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ScrollBar & ScrollViewer styles -->
+    <Style TargetType="ScrollBar">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="Height" Value="12" />
+                <Setter Property="Template" Value="{StaticResource MetroHorizontalScrollBarTemplate}" />
+            </Trigger>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Width" Value="12" />
+                <Setter Property="Height" Value="Auto" />
+                <Setter Property="Template" Value="{StaticResource MetroVerticalScrollBarTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ScrollViewer">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollViewer">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                                    Grid.ColumnSpan="2" Grid.RowSpan="2" 
+                                                    Margin="{TemplateBinding Padding}" 
+                                                    Content="{TemplateBinding Content}" 
+                                                    ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                    CanContentScroll="{TemplateBinding CanContentScroll}" />
+
+                            <ScrollBar x:Name="PART_VerticalScrollBar"
+                                       Panel.ZIndex="1"
+                                       Grid.Column="1"
+                                       Orientation="Vertical"
+                                       Value="{TemplateBinding VerticalOffset}"
+                                       Maximum="{TemplateBinding ScrollableHeight}"
+                                       ViewportSize="{TemplateBinding ViewportHeight}"
+                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                       AutomationProperties.AutomationId="VerticalScrollBar" />
+                            <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                       Panel.ZIndex="1"
+                                       Grid.Row="1"
+                                       Orientation="Horizontal"
+                                       Value="{TemplateBinding HorizontalOffset}"
+                                       Maximum="{TemplateBinding ScrollableWidth}"
+                                       ViewportSize="{TemplateBinding ViewportWidth}"
+                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                       AutomationProperties.AutomationId="HorizontalScrollBar" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="PART_HorizontalScrollBar" Property="Opacity" Value="0" />
+                            <Setter TargetName="PART_VerticalScrollBar" Property="Opacity" Value="0" />
+                        </Trigger>
+                        <!-- HACK: This is used in the FlowDocumentScrollViewer template. 
+                                   It allows the template to chose when to disable scrollbars, since a FlowDocument catches IsMouseOver.
+                                   ScrollViewer.IsMouseOver is always false in a FlowDocumentScrollViewer. -->
+                        <Trigger Property="Tag" Value="DONT_DISABLE_SCROLLBARS">
+                            <Setter TargetName="PART_HorizontalScrollBar" Property="Opacity" Value="1" />
+                            <Setter TargetName="PART_VerticalScrollBar" Property="Opacity" Value="1" />
+                        </Trigger>
+
+                        <!-- Give some space for the scrollbars if needed -->
+                        <Trigger Property="ComputedVerticalScrollBarVisibility" Value="Visible">
+                            <Setter Property="Padding" Value="0,0,4,0" />
+                        </Trigger>
+                        <Trigger Property="ComputedHorizontalScrollBarVisibility" Value="Visible">
+                            <Setter Property="Padding" Value="0,0,0,4" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ComputedVerticalScrollBarVisibility" Value="Visible" />
+                                <Condition Property="ComputedHorizontalScrollBarVisibility" Value="Visible" />
+                            </MultiTrigger.Conditions>
+
+                            <Setter Property="Padding" Value="0,0,4,4" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Color picker ListBox -->
+    <Style TargetType="ListBox" x:Key="MetroColorPickerBox">
+        <Style.Resources>
+            <!-- Remove selection colors (focused and non-focused) -->
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+        </Style.Resources>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal">
+                        <WrapPanel.Resources>
+                            <!-- Override default style, don't show selecteditem color -->
+                            <Style TargetType="ListBoxItem">
+                                <!-- Remove the ugly default dotted focus border -->
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="Transparent" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </WrapPanel.Resources>
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid x:Name="MainGrid"
+                          Width="32"
+                          Height="20"
+                          Margin="2">
+                        <Grid.Background>
+                            <SolidColorBrush Color="{Binding}" />
+                        </Grid.Background>
+                        <Border BorderBrush="#55000000"
+                                BorderThickness="1" />
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="True">
+                            <Setter TargetName="MainGrid" Property="Width" Value="39" />
+                            <Setter TargetName="MainGrid" Property="Height" Value="24" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    <!-- ResizeGrid (internal control) -->
+    <Style TargetType="myInt:ResizeGrid">
+        <Setter Property="Template" Value="{StaticResource ResizeGridTemplate}" />
+    </Style>
+
+    <!-- WindowControls (internal control) -->
+    <Style TargetType="myInt:WindowControls">
+        <Setter Property="Template" Value="{StaticResource WindowControlsTemplate}" />
+    </Style>
+</ResourceDictionary>
